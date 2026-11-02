@@ -6,7 +6,7 @@ CardioGuard is a heart-risk screening platform for **individuals and community h
 
 ## 🌐 Live Demo
 
-- https://tanishqtiwari1.github.io/Pbl_project/
+- https://tanishqtiwari1.github.io/CardioGuard/
 
 ## 🚀 Features
 
@@ -18,6 +18,8 @@ CardioGuard is a heart-risk screening platform for **individuals and community h
 - 🇮🇳 **Hindi and English** for screening, community and emergency pages.
 - 📄 **Fill from a lab report:** photograph or upload a blood test, BP or ECG report; values are read in the browser (OCR) and shown for checking before they fill the form. The report never leaves the device.
 - 🩺 **Report for your doctor (PDF):** results, main contributing factors, trend over time, and personalised questions to ask.
+- 🆘 **One-tap SOS:** calls 108, then sends family a WhatsApp or SMS message with a private live-location link and the route to the fastest hospital by road. No login needed. The location is deleted when SOS ends or after 6 hours.
+- 🪪 **ER handoff card:** medicines, allergies, conditions, CardioGuard results and symptom start time, shown on screen and as a QR code. The details travel inside the QR link and stay out of any database.
 - 🗺️ **Find a specialist:** after a result, find nearby cardiology services, hospitals and clinics on an interactive map (real OpenStreetMap data, no invented doctors or ratings). Use your location or type a city, area or PIN code; filter, sort, get directions, call, and share your assessment report. Only an approximate (~1 km) location leaves the device and nothing is stored.
 
 **Experience**
@@ -151,7 +153,7 @@ CardioGuard Dashboard
 - Backend: Python, FastAPI
 - Machine Learning: XGBoost, Scikit-learn (logistic regression)
 - In-browser OCR and PDF: Tesseract.js, PDF.js, jsPDF
-- Maps and places: Leaflet, OpenStreetMap (Overpass API for providers, Nominatim for place search)
+- Maps and places: Leaflet, OpenStreetMap (Overpass and Nominatim for places, OSRM for road routes and times)
 - Data Processing: Pandas, NumPy
 - Database: SQLite
 - Frontend Deployment: GitHub Pages

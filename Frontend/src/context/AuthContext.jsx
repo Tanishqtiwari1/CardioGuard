@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { clearResults } from '../services/sos';
 import { clearStoredToken, getCurrentUser, getStoredToken, loginUser, registerUser, storeToken } from '../services/api';
 
 const AuthContext = createContext(null);
@@ -38,7 +39,8 @@ export function AuthProvider({ children }) {
   const authenticate = (payload) => { storeToken(payload.access_token); setUser(payload.user); cacheUser(payload.user); return payload.user; };
   const login = async (credentials) => authenticate(await loginUser(credentials));
   const signup = async (data) => authenticate(await registerUser(data));
-  const logout = () => { clearStoredToken(); setUser(null); cacheUser(null); };
+  // The account's results leave the ER card; the emergency profile stays until deleted on the SOS page.
+  const logout = () => { clearStoredToken(); setUser(null); cacheUser(null); clearResults(); };
 
   return <AuthContext.Provider value={{ user, checking, login, signup, logout }}>{children}</AuthContext.Provider>;
 }

@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Building2, Clock, ExternalLink, FileText, Globe, HeartPulse, List, LoaderCircle, LocateFixed, Map as MapIcon, MapPin, Navigation, Phone, RefreshCcw, Search, SearchX, ShieldCheck, Stethoscope, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import ManualLocation from '../components/specialists/ManualLocation';
 import ProviderMap from '../components/specialists/ProviderMap';
-import { directionsUrl, geocode, rankProviders, reverseGeocode, searchProviders, specialtyLabel } from '../services/places';
+import { directionsUrl, rankProviders, reverseGeocode, searchProviders, specialtyLabel } from '../services/places';
 import { useToast } from '../ui/toast';
 
 const RADII = [5, 10, 25];
@@ -214,35 +215,6 @@ function ProviderDetail({ provider, origin, onClose }) {
     <Link className="share-assessment" to="/reports"><FileText size={16} /><span><strong>Share your assessment with the doctor</strong><small>Download your CardioGuard report (educational estimate, not a diagnosis).</small></span></Link>
     <p className="data-source">Listing from <a href={provider.osmUrl} target="_blank" rel="noreferrer">OpenStreetMap</a>. Details may be out of date; confirm with the provider.</p>
   </aside>;
-}
-
-function ManualLocation({ onChoose, onClose, onUseMine }) {
-  const toast = useToast();
-  const [value, setValue] = useState('');
-  const [results, setResults] = useState(null);
-  const [busy, setBusy] = useState(false);
-  const submit = async (event) => {
-    event.preventDefault();
-    if (!value.trim()) return;
-    setBusy(true);
-    try {
-      const places = await geocode(value.trim());
-      setResults(places);
-      if (places.length === 1) onChoose(places[0]);
-    } catch {
-      toast('Location search is unavailable right now. Please try again.', { tone: 'error' });
-    } finally {
-      setBusy(false);
-    }
-  };
-  return <form className="manual-location" onSubmit={submit}>
-    <label className="search-box"><MapPin size={16} /><input autoFocus value={value} onChange={(event) => setValue(event.target.value)} placeholder="City, area, PIN code or address" aria-label="Location" /></label>
-    <button type="submit" className="btn btn-primary" disabled={busy}>{busy ? <LoaderCircle size={16} className="spin" /> : <Search size={16} />} Search</button>
-    {onUseMine && <button type="button" className="btn btn-ghost" onClick={onUseMine}><LocateFixed size={16} /> Use my location</button>}
-    <button type="button" className="icon-btn" onClick={onClose} aria-label="Cancel"><X size={16} /></button>
-    {results && results.length === 0 && <p className="muted-text manual-results">No places found. Try a nearby city or PIN code.</p>}
-    {results && results.length > 1 && <ul className="manual-results">{results.map((place) => <li key={`${place.lat},${place.lon}`}><button type="button" onClick={() => onChoose(place)}><MapPin size={14} /> {place.label}</button></li>)}</ul>}
-  </form>;
 }
 
 function Fact({ icon: Icon, label, value }) {

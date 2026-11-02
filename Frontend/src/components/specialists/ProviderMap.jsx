@@ -24,7 +24,7 @@ function providerIcon(provider, selected) {
 const originIcon = L.divIcon({ className: '', html: '<span class="map-origin"><i></i></span>', iconSize: [22, 22], iconAnchor: [11, 11] });
 
 // Leaflet map of providers. Fits all results on each new search; pans to the selected one.
-export default function ProviderMap({ providers, origin, selectedId, onSelect, onAreaChange, compact = false }) {
+export default function ProviderMap({ providers, origin, selectedId, onSelect, onAreaChange, compact = false, route = null, label = 'Map of nearby healthcare providers' }) {
   const container = useRef(null);
   const map = useRef(null);
   const tiles = useRef(null);
@@ -32,6 +32,7 @@ export default function ProviderMap({ providers, origin, selectedId, onSelect, o
   const originMarker = useRef(null);
   const lastFitKey = useRef('');
   const suppressMove = useRef(false);
+  const routeLine = useRef(null);
 
   useEffect(() => {
     map.current = L.map(container.current, { zoomControl: !compact, attributionControl: true, scrollWheelZoom: !compact, dragging: !compact || !L.Browser.mobile });
@@ -50,6 +51,7 @@ export default function ProviderMap({ providers, origin, selectedId, onSelect, o
       map.current = null;
       markers.current.clear();
       originMarker.current = null;
+      routeLine.current = null;
       lastFitKey.current = '';
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +68,7 @@ export default function ProviderMap({ providers, origin, selectedId, onSelect, o
       if (!marker) {
         marker = L.marker([provider.lat, provider.lon], { icon: providerIcon(provider, false), title: provider.name, keyboard: true, riseOnHover: true })
           .addTo(map.current)
-          .on('click', () => onSelect(provider.id));
+          .on('click', () => onSelect?.(provider.id));
         current.set(provider.id, marker);
       }
     });
@@ -74,7 +76,8 @@ export default function ProviderMap({ providers, origin, selectedId, onSelect, o
       if (!originMarker.current) originMarker.current = L.marker([origin.lat, origin.lon], { icon: originIcon, interactive: false, zIndexOffset: 1000 }).addTo(map.current);
       else originMarker.current.setLatLng([origin.lat, origin.lon]);
     }
-    const fitKey = `${origin?.lat},${origin?.lon}|${[...ids].sort().join(',')}`;
+    // Rounded so a moving patient doesn't keep resetting the view.
+    const fitKey = `${origin?.lat?.toFixed(2)},${origin?.lon?.toFixed(2)}|${[...ids].sort().join(',')}`;
     if (fitKey !== lastFitKey.current) {
       lastFitKey.current = fitKey;
       map.current.invalidateSize();
@@ -102,5 +105,20 @@ export default function ProviderMap({ providers, origin, selectedId, onSelect, o
     }
   }, [selectedId, providers, compact]);
 
-  return <div ref={container} className={`provider-map ${compact ? 'compact' : ''}`} role="region" aria-label="Map of nearby healthcare providers" />;
+  // Road route line, framed when the destination changes.
+  const routeEnd = route?.length ? route[route.length - 1].join(',') : '';
+  useEffect(() => {
+    if (!map.current) return;
+    if (!route?.length) { routeLine.current?.remove(); routeLine.current = null; return; }
+    if (routeLine.current) routeLine.current.setLatLngs(route);
+    else routeLine.current = L.polyline(route, { className: 'map-route', interactive: false }).addTo(map.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route]);
+  useEffect(() => {
+    if (!map.current || !routeLine.current) return;
+    suppressMove.current = true;
+    map.current.fitBounds(routeLine.current.getBounds(), { padding: [46, 46], maxZoom: 16 });
+  }, [routeEnd]);
+
+  return <div ref={container} className={`provider-map ${compact ? 'compact' : ''}`} role="region" aria-label={label} />;
 }

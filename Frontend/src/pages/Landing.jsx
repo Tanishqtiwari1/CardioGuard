@@ -28,7 +28,7 @@ export default function Landing() {
       <nav className="landing-links" aria-label="Main">
         <a href="#how-it-works">How it works</a>
         <a href="#features">Capabilities</a>
-        <Link to="/emergency" className="nav-emergency"><Siren size={15} /> Emergency</Link>
+        <Link to="/sos" className="nav-emergency"><Siren size={15} /> SOS</Link>
         <ThemeToggle />
         <Link to="/login" className="text-link">Login <ArrowRight size={15} /></Link>
         <Link to="/signup" className="btn btn-primary nav-signup">Sign up</Link>

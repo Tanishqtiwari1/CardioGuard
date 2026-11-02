@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Activity, BarChart3, ClipboardList, CornerDownLeft, FileText, History, HousePlus, Languages, Lightbulb, LineChart, LogOut, Moon, Search, Settings, Siren, Stethoscope, Sun, UserRound, Users } from 'lucide-react';
+import { Activity, BarChart3, ClipboardList, CornerDownLeft, FileText, History, HousePlus, Languages, Lightbulb, LineChart, LogOut, Moon, PhoneCall, Search, Settings, Siren, Stethoscope, Sun, UserRound, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useT } from '../i18n';
@@ -26,6 +26,7 @@ export default function CommandPalette({ open, onClose }) {
     { group: 'Go to', label: 'Insights', icon: Lightbulb, run: () => navigate('/insights'), keywords: 'factors' },
     { group: 'Go to', label: 'Model insights', icon: LineChart, run: () => navigate('/model-insights'), keywords: 'accuracy fairness calibration model card' },
     { group: 'Go to', label: 'Reports', icon: FileText, run: () => navigate('/reports'), keywords: 'pdf doctor download' },
+    { group: 'Go to', label: t('nav.sos'), icon: PhoneCall, run: () => navigate('/sos'), keywords: 'call 108 ambulance family whatsapp hospital route medical card qr' },
     { group: 'Go to', label: t('nav.emergency'), icon: Siren, run: () => navigate('/emergency'), keywords: 'chest pain 108 112 stroke' },
     { group: 'Go to', label: 'My profile', icon: UserRound, run: () => navigate('/profile'), keywords: 'account' },
     { group: 'Go to', label: 'Settings', icon: Settings, run: () => navigate('/settings'), keywords: 'preferences' },

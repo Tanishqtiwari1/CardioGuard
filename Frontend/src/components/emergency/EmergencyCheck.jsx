@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, Check, Phone, Siren, TriangleAlert } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useT } from '../../i18n';
 
 const SYMPTOMS = ['emergency.s1', 'emergency.s2', 'emergency.s3', 'emergency.s4', 'emergency.s5', 'emergency.s6'];
@@ -40,6 +41,7 @@ export function EmergencyAlert({ onBack }) {
       <a className="btn emergency-call" href="tel:108"><Phone size={20} /> {t('emergency.call108')}</a>
       <a className="btn emergency-call secondary" href="tel:112"><Phone size={20} /> {t('emergency.call112')}</a>
     </div>
+    <Link className="btn btn-danger emergency-sos-link" to="/sos"><Siren size={18} /> {t('emergency.openSos')}</Link>
     <h3>{t('emergency.whileWaiting')}</h3>
     <ol>{['emergency.w1', 'emergency.w2', 'emergency.w3', 'emergency.w4', 'emergency.w5'].map((key) => <li key={key}>{t(key)}</li>)}</ol>
     {onBack && <button type="button" className="subtle-link emergency-back" onClick={onBack}>{t('emergency.mistake')}</button>}

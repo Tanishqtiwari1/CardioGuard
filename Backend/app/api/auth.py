@@ -18,7 +18,7 @@ RESET_MESSAGE = "If an account exists for that email, a password reset link has 
 def send_reset_email(email: str, token: str) -> None:
     resend_api_key = os.getenv("RESEND_API_KEY")
     from_email = os.getenv("RESEND_FROM_EMAIL")
-    frontend_url = os.getenv("FRONTEND_URL", "https://tanishqtiwari1.github.io/Pbl_project/").rstrip("/")
+    frontend_url = os.getenv("FRONTEND_URL", "https://tanishqtiwari1.github.io/CardioGuard/").rstrip("/")
     if not all((resend_api_key, from_email, frontend_url)):
         raise RuntimeError("Password reset email service is not configured")
     reset_url = f"{frontend_url}/#/reset-password?token={token}"

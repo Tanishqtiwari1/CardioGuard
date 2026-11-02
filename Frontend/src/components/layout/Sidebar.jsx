@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
-import { Activity, BarChart3, ClipboardList, FileText, History, HousePlus, Lightbulb, LineChart, PanelLeftClose, Siren, Stethoscope, Users, X } from 'lucide-react';
+import { Activity, BarChart3, ClipboardList, FileText, History, HousePlus, Lightbulb, LineChart, PanelLeftClose, PhoneCall, Siren, Stethoscope, Users, X } from 'lucide-react';
 import { useT } from '../../i18n';
 
 const links = [
@@ -33,6 +33,7 @@ export default function Sidebar({ open, onClose, onToggle }) {
             <Icon size={19} /><span>{labelKey ? t(labelKey) : label}</span>
           </NavLink>
         ))}
+        <NavLink to="/sos" onClick={onClose} className="side-link side-link-emergency"><PhoneCall size={19} /><span>{t('nav.sos')}</span></NavLink>
         <NavLink to="/emergency" onClick={onClose} className="side-link side-link-emergency"><Siren size={19} /><span>{t('nav.emergency')}</span></NavLink>
       </nav>
       <div className="sidebar-spacer" />

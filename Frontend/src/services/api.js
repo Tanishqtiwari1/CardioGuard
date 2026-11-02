@@ -61,3 +61,8 @@ export const syncCommunity = async (batch) => (await api.post('/community/sync',
 export const getPatients = async () => (await api.get('/community/patients')).data;
 export const getPatient = async (id) => (await api.get(`/community/patients/${id}`)).data;
 export const updateReferral = async (screeningId, status) => (await api.patch(`/community/screenings/${screeningId}`, { referral_status: status })).data;
+
+const sosRequest = { timeout: 20000 };
+export const updateSosShare = async (id, key, data) => (await api.put(`/sos/${id}`, data, { ...sosRequest, headers: { 'X-SOS-Key': key } })).data;
+export const readSosShare = async (id) => (await api.get(`/sos/${id}`, { timeout: 70000 })).data;
+export const endSosShare = async (id, key) => api.delete(`/sos/${id}`, { ...sosRequest, headers: { 'X-SOS-Key': key } });

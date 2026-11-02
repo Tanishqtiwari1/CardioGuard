@@ -22,6 +22,16 @@ import Community from './pages/Community';
 import { LanguageProvider } from './i18n';
 // The map library is large, so this page is downloaded only when opened.
 const Specialists = lazy(() => import('./pages/Specialists'));
+const loadSos = () => import('./pages/Sos');
+const Sos = lazy(loadSos);
+const SosTrack = lazy(() => import('./pages/SosTrack'));
+const ErCardPage = lazy(() => import('./pages/ErCardPage'));
+const pageFallback = <div className="auth-loading"><div className="loading-spinner" /><span>Loading…</span></div>;
+
+// Fetch the SOS page in the background so it is cached for offline use before it is needed.
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => (window.requestIdleCallback || setTimeout)(() => loadSos().catch(() => {})));
+}
 import { ToastProvider } from './ui/toast';
 
 function App() {
@@ -37,6 +47,9 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/emergency" element={<Emergency />} />
+        <Route path="/sos" element={<Suspense fallback={pageFallback}><Sos /></Suspense>} />
+        <Route path="/track/:shareId" element={<Suspense fallback={pageFallback}><SosTrack /></Suspense>} />
+        <Route path="/er/:data" element={<Suspense fallback={pageFallback}><ErCardPage /></Suspense>} />
         <Route element={<ProtectedRoute />}>
           <Route element={<AppShell />}>
           <Route path="/assessment" element={<Assessment />} />

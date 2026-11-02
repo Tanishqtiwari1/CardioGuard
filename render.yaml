@@ -14,7 +14,7 @@ services:
       - key: CORS_ORIGINS
         value: https://tanishqtiwari1.github.io
       - key: FRONTEND_URL
-        value: https://tanishqtiwari1.github.io/Pbl_project/
+        value: https://tanishqtiwari1.github.io/CardioGuard/
       - key: RESEND_API_KEY
         sync: false
       - key: RESEND_FROM_EMAIL
