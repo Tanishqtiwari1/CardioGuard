@@ -1,7 +1,7 @@
 // Run with: node --test Frontend/src/services/reportParser.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parseReport } from './reportParser.js';
+import { parseLipids, parseReport } from './reportParser.js';
 
 test('reads a typical Indian lipid and sugar report', () => {
   const found = parseReport(`Age/Sex : 54 Yrs / M
@@ -41,4 +41,15 @@ test('recovers a decimal point dropped by OCR in HbA1c', () => {
 
 test('ignores unrelated text', () => {
   assert.deepEqual(parseReport('Average stage page 3 of 4\nReference range 70-100'), {});
+});
+
+test('reads LDL and triglycerides for medicine context', () => {
+  assert.deepEqual(parseLipids(`LDL Cholesterol 158 mg/dL <100
+VLDL Cholesterol 32 mg/dL
+Triglycerides 180 mg/dL <150
+LDL/HDL Ratio 3.1`), { ldl: 158, triglycerides: 180 });
+});
+
+test('never takes a reference range as the LDL result', () => {
+  assert.deepEqual(parseLipids('LDL Cholesterol <100 mg/dL'), {});
 });

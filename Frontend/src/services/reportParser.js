@@ -86,6 +86,21 @@ export function parseReport(text) {
   return found;
 }
 
+// Kept apart from parseReport because the risk forms don't use these values.
+export function parseLipids(text) {
+  const lines = text.split(/\r?\n/).map((line) => line.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const found = {};
+  const ldl = findValue(lines, /\bldl\b(?:[-\s]*c(?:holesterol)?\b)?/i, {
+    exclude: /vldl|non[-\s]?hdl|ratio/i,
+    min: 20, max: 500,
+    convert: (line, value) => (/mmol/i.test(line) && value >= 0.5 && value <= 13 ? Math.round(value * MGDL_PER_MMOL_CHOLESTEROL) : undefined),
+  });
+  if (ldl) found.ldl = ldl;
+  const triglycerides = findValue(lines, /triglycerides?|\btg\b/i, { min: 20, max: 3000 });
+  if (triglycerides) found.triglycerides = triglycerides;
+  return found;
+}
+
 export const REPORT_LABELS = {
   systolic_bp: ['Blood pressure (upper)', 'mmHg'],
   diastolic_bp: ['Blood pressure (lower)', 'mmHg'],

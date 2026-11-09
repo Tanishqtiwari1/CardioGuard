@@ -22,6 +22,16 @@ CardioGuard is a heart-risk screening platform for **individuals and community h
 - 🪪 **ER handoff card:** medicines, allergies, conditions, CardioGuard results and symptom start time, shown on screen and as a QR code. The details travel inside the QR link and stay out of any database.
 - 🗺️ **Find a specialist:** after a result, find nearby cardiology services, hospitals and clinics on an interactive map (real OpenStreetMap data, no invented doctors or ratings). Use your location or type a city, area or PIN code; filter, sort, get directions, call, and share your assessment report. Only an approximate (~1 km) location leaves the device and nothing is stored.
 
+**My Medicines (medicine understanding and safety)**
+- 📸 **Scan strips, boxes and bottles** one after another. Photos are checked for quality and read on the device; a poor photo is refused rather than guessed from, and nothing is saved until the patient confirms it.
+- 💊 **Medicine cabinet:** what each medicine is, its common uses, and how it relates to the patient's own conditions, in simple English or Hindi.
+- 📄 **Prescription comparison:** reads a photo, PDF or typed prescription, then flags possible strength, name or ingredient mismatches for a doctor or pharmacist to confirm.
+- 🔎 **Check All My Medicines:** interactions, duplicate ingredients, allergies, missing instructions and expiry, with one summary at the top.
+- 🔔 **Reminders only from confirmed prescription instructions,** with optional taken/skipped/snoozed history and an add-to-calendar file.
+- 🪪 **Emergency Medical Summary,** created only with explicit consent and shown only when the patient chooses.
+
+CardioGuard explains and compares information. It does not prescribe, diagnose or change treatment.
+
 **Experience**
 - ✨ Interactive design: live risk demo on the landing page (the real model running in the browser), animated risk gauges and counters, scroll reveals, card spotlight effects, page transitions
 - 🌗 Light, dark and system themes; ⌘K / Ctrl+K command palette to jump anywhere
@@ -32,6 +42,31 @@ CardioGuard is a heart-risk screening platform for **individuals and community h
 - 🔬 What-if risk simulation
 - 📊 Model transparency: real metrics, calibration chart, fairness by sex/age/hospital, and a model card
 - 🔐 Authentication, password reset, assessment history
+
+## 💊 Medicine module architecture
+
+```mermaid
+flowchart LR
+    A[Photo or typed text] --> B[Quality check and OCR]
+    B --> C[Identification]
+    D[(Reference data)] --> C
+    C --> E[Patient confirms]
+    E --> F[Conditions and reports]
+    F --> G[Prescription comparison]
+    G --> H[Interactions, duplicates, allergies, expiry]
+    H --> I[Summary and reminders]
+```
+
+Code lives in `Backend/app/medicines/`. Everything is deterministic except the optional `ai.py`, which can only copy text from a photo or reword verified facts, and whose output is checked by `language_guard.py`. Without `ANTHROPIC_API_KEY` it stays off.
+
+Reference data lives in `Backend/app/medicines/knowledge/`. `scripts/sync_medicine_sources.py` links each ingredient and interaction rule to a real FDA label through openFDA:
+
+```bash
+cd Backend
+PYTHONPATH=. python scripts/sync_medicine_sources.py
+```
+
+> **Before real patients use this:** the reference summaries and Hindi text are marked `pending_clinical_review` and must be reviewed by a pharmacist. FDA labels are US documents, and some India-market medicines have no FDA label, so the app shows those as not verified against a label.
 
 ## 🧠 System Workflow
 

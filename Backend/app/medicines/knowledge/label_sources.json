@@ -1,0 +1,883 @@
+{
+ "generated": "2026-11-09",
+ "labels": {
+  "atorvastatin": {
+   "set_id": "00afce9b-48c9-487a-a738-e359c005c707",
+   "effective_date": "2025-08-28",
+   "retrieved": "2026-11-09",
+   "title": "Atorvastatin calcium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00afce9b-48c9-487a-a738-e359c005c707"
+  },
+  "rosuvastatin": {
+   "set_id": "0ad5b7de-e97d-4989-91e4-edae73543896",
+   "effective_date": "2024-10-30",
+   "retrieved": "2026-11-09",
+   "title": "Rosuvastatin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0ad5b7de-e97d-4989-91e4-edae73543896"
+  },
+  "simvastatin": {
+   "set_id": "00896fff-081d-4553-be8c-1999a8a73dda",
+   "effective_date": "2026-02-26",
+   "retrieved": "2026-11-09",
+   "title": "SIMVASTATIN",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00896fff-081d-4553-be8c-1999a8a73dda"
+  },
+  "ezetimibe": {
+   "set_id": "02b00cb2-7253-4fb4-a216-53691a929a28",
+   "effective_date": "2026-02-17",
+   "retrieved": "2026-11-09",
+   "title": "EZETIMIBE",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02b00cb2-7253-4fb4-a216-53691a929a28"
+  },
+  "fenofibrate": {
+   "set_id": "00c2f942-e839-46fc-948a-f8e2fa79ccd1",
+   "effective_date": "2024-04-29",
+   "retrieved": "2026-11-09",
+   "title": "Fenofibrate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00c2f942-e839-46fc-948a-f8e2fa79ccd1"
+  },
+  "telmisartan": {
+   "set_id": "09d31eee-cd22-4918-a889-3eb4d2969525",
+   "effective_date": "2026-06-05",
+   "retrieved": "2026-11-09",
+   "title": "telmisartan",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=09d31eee-cd22-4918-a889-3eb4d2969525"
+  },
+  "losartan": {
+   "set_id": "9501dfaa-c8cf-46d6-8bec-936c4fd8fe03",
+   "effective_date": "2026-07-16",
+   "retrieved": "2026-11-09",
+   "title": "Losartan Potassium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9501dfaa-c8cf-46d6-8bec-936c4fd8fe03"
+  },
+  "olmesartan": {
+   "set_id": "04f0107b-4194-4412-9ebb-3219da5a9ac9",
+   "effective_date": "2026-01-20",
+   "retrieved": "2026-11-09",
+   "title": "Olmesartan Medoxomil",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04f0107b-4194-4412-9ebb-3219da5a9ac9"
+  },
+  "valsartan": {
+   "set_id": "03af7d09-314a-fe85-e063-6294a90afa25",
+   "effective_date": "2026-01-01",
+   "retrieved": "2026-11-09",
+   "title": "Valsartan",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03af7d09-314a-fe85-e063-6294a90afa25"
+  },
+  "ramipril": {
+   "set_id": "01da05d8-e72e-4208-bf92-a5cd929f15ab",
+   "effective_date": "2022-07-01",
+   "retrieved": "2026-11-09",
+   "title": "Ramipril",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da05d8-e72e-4208-bf92-a5cd929f15ab"
+  },
+  "enalapril": {
+   "set_id": "e81a8aca-0e7c-4a02-b596-09e4ac22c70e",
+   "effective_date": "2019-03-29",
+   "retrieved": "2026-11-09",
+   "title": "Enalapril Maleate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e81a8aca-0e7c-4a02-b596-09e4ac22c70e"
+  },
+  "lisinopril": {
+   "set_id": "021831ab-dfeb-40fc-aede-4aa1fbb8d918",
+   "effective_date": "2023-08-18",
+   "retrieved": "2026-11-09",
+   "title": "Lisinopril",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=021831ab-dfeb-40fc-aede-4aa1fbb8d918"
+  },
+  "perindopril": {
+   "set_id": "87768fbf-7c63-47da-8925-0316f343d6ef",
+   "effective_date": "2024-03-13",
+   "retrieved": "2026-11-09",
+   "title": "Perindopril Erbumine",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=87768fbf-7c63-47da-8925-0316f343d6ef"
+  },
+  "sacubitril": {
+   "set_id": "000dc81d-ab91-450c-8eae-8eb74e72296f",
+   "effective_date": "2026-07-06",
+   "retrieved": "2026-11-09",
+   "title": "ENTRESTO",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f"
+  },
+  "amlodipine": {
+   "set_id": "614d974f-51c7-4b18-8171-39eb6e8d4c03",
+   "effective_date": "2026-02-16",
+   "retrieved": "2026-11-09",
+   "title": "NORLIQVA",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=614d974f-51c7-4b18-8171-39eb6e8d4c03"
+  },
+  "nifedipine": {
+   "set_id": "0b4e9bbc-4c16-4611-9ea2-903852804227",
+   "effective_date": "2026-03-19",
+   "retrieved": "2026-11-09",
+   "title": "Nifedipine",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0b4e9bbc-4c16-4611-9ea2-903852804227"
+  },
+  "diltiazem": {
+   "set_id": "0089fc7a-a7aa-4873-b699-39a1b21616ca",
+   "effective_date": "2025-08-20",
+   "retrieved": "2026-11-09",
+   "title": "diltiazem hydrochloride",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0089fc7a-a7aa-4873-b699-39a1b21616ca"
+  },
+  "verapamil": {
+   "set_id": "006cf920-04ae-0b53-cb91-85481972abc2",
+   "effective_date": "2024-05-22",
+   "retrieved": "2026-11-09",
+   "title": "Verapamil Hydrochloride",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=006cf920-04ae-0b53-cb91-85481972abc2"
+  },
+  "metoprolol": {
+   "set_id": "00940cc5-d2eb-4841-9138-de97d7b1c674",
+   "effective_date": "2026-07-27",
+   "retrieved": "2026-11-09",
+   "title": "METOPROLOL TARTRATE",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00940cc5-d2eb-4841-9138-de97d7b1c674"
+  },
+  "atenolol": {
+   "set_id": "09b21985-1818-449d-9b29-98f733cf7b9f",
+   "effective_date": "2024-11-26",
+   "retrieved": "2026-11-09",
+   "title": "Atenolol",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=09b21985-1818-449d-9b29-98f733cf7b9f"
+  },
+  "bisoprolol": {
+   "set_id": "36b53e7f-e306-40a8-8d1b-d00695a4fe61",
+   "effective_date": "2024-10-24",
+   "retrieved": "2026-11-09",
+   "title": "Bisoprolol Fumarate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=36b53e7f-e306-40a8-8d1b-d00695a4fe61"
+  },
+  "carvedilol": {
+   "set_id": "010290af-81f4-0037-e063-6394a90a4638",
+   "effective_date": "2026-05-11",
+   "retrieved": "2026-11-09",
+   "title": "Carvedilol",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=010290af-81f4-0037-e063-6394a90a4638"
+  },
+  "nebivolol": {
+   "set_id": "04a64dad-6922-4737-ab46-98c185782b38",
+   "effective_date": "2024-10-31",
+   "retrieved": "2026-11-09",
+   "title": "Nebivolol",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04a64dad-6922-4737-ab46-98c185782b38"
+  },
+  "propranolol": {
+   "set_id": "54dd0fad-64ee-788f-e063-6394a90ac88e",
+   "effective_date": "2026-06-22",
+   "retrieved": "2026-11-09",
+   "title": "PROPRANOLOL",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54dd0fad-64ee-788f-e063-6394a90ac88e"
+  },
+  "hydrochlorothiazide": {
+   "set_id": "01ad3531-5ed9-434c-b7d5-02d72aa82e46",
+   "effective_date": "2023-12-25",
+   "retrieved": "2026-11-09",
+   "title": "Hydrochlorothiazide",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01ad3531-5ed9-434c-b7d5-02d72aa82e46"
+  },
+  "chlorthalidone": {
+   "set_id": "01065eda-7515-46bc-b858-a062c3aa35bd",
+   "effective_date": "2022-11-24",
+   "retrieved": "2026-11-09",
+   "title": "Chlorthalidone",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01065eda-7515-46bc-b858-a062c3aa35bd"
+  },
+  "indapamide": {
+   "set_id": "0687ed93-4761-4f9c-887d-95309c03f60e",
+   "effective_date": "2023-06-26",
+   "retrieved": "2026-11-09",
+   "title": "Indapamide",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0687ed93-4761-4f9c-887d-95309c03f60e"
+  },
+  "furosemide": {
+   "set_id": "01a5f094-b473-4e46-9e61-69d5ec6dd766",
+   "effective_date": "2023-03-01",
+   "retrieved": "2026-11-09",
+   "title": "Furosemide",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01a5f094-b473-4e46-9e61-69d5ec6dd766"
+  },
+  "torsemide": {
+   "set_id": "03fbbb85-4e0f-4f3b-b4b0-87f84cb33d47",
+   "effective_date": "2023-06-30",
+   "retrieved": "2026-11-09",
+   "title": "Torsemide",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03fbbb85-4e0f-4f3b-b4b0-87f84cb33d47"
+  },
+  "spironolactone": {
+   "set_id": "0cc23419-e6d5-4036-8011-dc1d2455e0cb",
+   "effective_date": "2026-09-09",
+   "retrieved": "2026-11-09",
+   "title": "SPIRONOLACTONE",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cc23419-e6d5-4036-8011-dc1d2455e0cb"
+  },
+  "aspirin": {
+   "set_id": "0058175f-3474-40c3-a046-6cfaec86d84b",
+   "effective_date": "2024-04-16",
+   "retrieved": "2026-11-09",
+   "title": "Low Dose Aspirin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0058175f-3474-40c3-a046-6cfaec86d84b"
+  },
+  "clopidogrel": {
+   "set_id": "02f0eaf8-0fc2-425d-8259-cef00156e25d",
+   "effective_date": "2024-10-31",
+   "retrieved": "2026-11-09",
+   "title": "Clopidogrel",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f0eaf8-0fc2-425d-8259-cef00156e25d"
+  },
+  "ticagrelor": {
+   "set_id": "1225fd45-9b56-1671-ee77-cd0c9f2174a5",
+   "effective_date": "2026-05-30",
+   "retrieved": "2026-11-09",
+   "title": "Ticagrelor",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1225fd45-9b56-1671-ee77-cd0c9f2174a5"
+  },
+  "prasugrel": {
+   "set_id": "35aa7f3e-bbd8-4eae-b61f-29d1abca2224",
+   "effective_date": "2025-03-02",
+   "retrieved": "2026-11-09",
+   "title": "Prasugrel",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=35aa7f3e-bbd8-4eae-b61f-29d1abca2224"
+  },
+  "warfarin": {
+   "set_id": "2cbcc99d-9107-4d39-a1e9-e19305de8b5d",
+   "effective_date": "2026-06-25",
+   "retrieved": "2026-11-09",
+   "title": "Warfarin Sodium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cbcc99d-9107-4d39-a1e9-e19305de8b5d"
+  },
+  "apixaban": {
+   "set_id": "095a08ac-cf0e-497e-a682-ddef38d6b29c",
+   "effective_date": "2021-06-15",
+   "retrieved": "2026-11-09",
+   "title": "apixaban",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=095a08ac-cf0e-497e-a682-ddef38d6b29c"
+  },
+  "rivaroxaban": {
+   "set_id": "10db92f9-2300-4a80-836b-673e1ae91610",
+   "effective_date": "2026-09-10",
+   "retrieved": "2026-11-09",
+   "title": "Xarelto",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10db92f9-2300-4a80-836b-673e1ae91610"
+  },
+  "dabigatran": {
+   "set_id": "13649035-a498-4e31-a7ea-8b18cedceca7",
+   "effective_date": "2025-11-20",
+   "retrieved": "2026-11-09",
+   "title": "Dabigatran Etexilate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=13649035-a498-4e31-a7ea-8b18cedceca7"
+  },
+  "isosorbide_mononitrate": {
+   "set_id": "06839534-85b8-42aa-b0e3-079ed236be44",
+   "effective_date": "2026-03-27",
+   "retrieved": "2026-11-09",
+   "title": "Isosorbide Mononitrate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=06839534-85b8-42aa-b0e3-079ed236be44"
+  },
+  "isosorbide_dinitrate": {
+   "set_id": "0e5842f2-74f6-1f02-01bc-07578bd3b393",
+   "effective_date": "2026-02-10",
+   "retrieved": "2026-11-09",
+   "title": "Isosorbide Dinitrate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0e5842f2-74f6-1f02-01bc-07578bd3b393"
+  },
+  "nitroglycerin": {
+   "set_id": "3c11c1c2-8e62-4f63-8293-2f8b8d845f7e",
+   "effective_date": "2026-05-18",
+   "retrieved": "2026-11-09",
+   "title": "NITRO-TIME",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3c11c1c2-8e62-4f63-8293-2f8b8d845f7e"
+  },
+  "ranolazine": {
+   "set_id": "00979fb3-d70f-493d-94ca-2914cbadaa9d",
+   "effective_date": "2026-01-29",
+   "retrieved": "2026-11-09",
+   "title": "Ranolazine",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00979fb3-d70f-493d-94ca-2914cbadaa9d"
+  },
+  "ivabradine": {
+   "set_id": "236cc914-7eef-600c-e063-6394a90a4bd1",
+   "effective_date": "2025-04-15",
+   "retrieved": "2026-11-09",
+   "title": "IVABRADINE",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=236cc914-7eef-600c-e063-6394a90a4bd1"
+  },
+  "digoxin": {
+   "set_id": "03612934-62f4-4002-85af-6c66cd172acb",
+   "effective_date": "2024-09-04",
+   "retrieved": "2026-11-09",
+   "title": "Digoxin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03612934-62f4-4002-85af-6c66cd172acb"
+  },
+  "amiodarone": {
+   "set_id": "02f4a736-63ed-4ad4-a1f1-b21a71e928bd",
+   "effective_date": "2024-02-02",
+   "retrieved": "2026-11-09",
+   "title": "Pacerone",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f4a736-63ed-4ad4-a1f1-b21a71e928bd"
+  },
+  "metformin": {
+   "set_id": "27f603ec-25e6-4270-a7a3-34a64a76f7ef",
+   "effective_date": "2026-05-01",
+   "retrieved": "2026-11-09",
+   "title": "Metformin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=27f603ec-25e6-4270-a7a3-34a64a76f7ef"
+  },
+  "glimepiride": {
+   "set_id": "0003458f-352a-46fa-9d99-230daa76ae29",
+   "effective_date": "2024-11-13",
+   "retrieved": "2026-11-09",
+   "title": "Glimepiride",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0003458f-352a-46fa-9d99-230daa76ae29"
+  },
+  "sitagliptin": {
+   "set_id": "194c3718-5eb5-4cf5-85d0-2bb1ed8293b8",
+   "effective_date": "2026-07-08",
+   "retrieved": "2026-11-09",
+   "title": "JANUVIA",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=194c3718-5eb5-4cf5-85d0-2bb1ed8293b8"
+  },
+  "empagliflozin": {
+   "set_id": "1782b947-4a72-4feb-a488-1469d9af82bd",
+   "effective_date": "2023-05-03",
+   "retrieved": "2026-11-09",
+   "title": "JARDIANCE",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1782b947-4a72-4feb-a488-1469d9af82bd"
+  },
+  "dapagliflozin": {
+   "set_id": "01f90c94-71cb-4a1f-81ff-8004b850529b",
+   "effective_date": "2026-07-10",
+   "retrieved": "2026-11-09",
+   "title": "FARXIGA",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01f90c94-71cb-4a1f-81ff-8004b850529b"
+  },
+  "pioglitazone": {
+   "set_id": "060e3169-46a7-419d-9acc-05586cb2406b",
+   "effective_date": "2026-08-17",
+   "retrieved": "2026-11-09",
+   "title": "Pioglitazone",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=060e3169-46a7-419d-9acc-05586cb2406b"
+  },
+  "paracetamol": {
+   "set_id": "0005aafa-08f8-4990-a54d-cc097195708f",
+   "effective_date": "2026-01-02",
+   "retrieved": "2026-11-09",
+   "title": "Pain Reliever Extra Strength",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0005aafa-08f8-4990-a54d-cc097195708f"
+  },
+  "ibuprofen": {
+   "set_id": "00872852-680a-41b3-901b-b991b12a176d",
+   "effective_date": "2025-02-14",
+   "retrieved": "2026-11-09",
+   "title": "Ibuprofen",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00872852-680a-41b3-901b-b991b12a176d"
+  },
+  "diclofenac": {
+   "set_id": "af8a30fb-ead8-7e29-e053-2a95a90a040f",
+   "effective_date": "2024-12-31",
+   "retrieved": "2026-11-09",
+   "title": "Diclofenac DR",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=af8a30fb-ead8-7e29-e053-2a95a90a040f"
+  },
+  "naproxen": {
+   "set_id": "000155a8-709c-44e5-a75f-cd890f3a7caf",
+   "effective_date": "2026-01-29",
+   "retrieved": "2026-11-09",
+   "title": "Naproxen",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000155a8-709c-44e5-a75f-cd890f3a7caf"
+  },
+  "pantoprazole": {
+   "set_id": "07ff83f9-7039-ac26-e063-6394a90a37ce",
+   "effective_date": "2025-02-03",
+   "retrieved": "2026-11-09",
+   "title": "Pantoprazole",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=07ff83f9-7039-ac26-e063-6394a90a37ce"
+  },
+  "omeprazole": {
+   "set_id": "0344268f-d8e6-48d5-b1e1-f750ed1d8a52",
+   "effective_date": "2026-07-17",
+   "retrieved": "2026-11-09",
+   "title": "Omeprazole",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0344268f-d8e6-48d5-b1e1-f750ed1d8a52"
+  },
+  "esomeprazole": {
+   "set_id": "0b115351-318c-4bd9-935c-704a09bcdf52",
+   "effective_date": "2024-07-25",
+   "retrieved": "2026-11-09",
+   "title": "basic care esomeprazole magnesium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0b115351-318c-4bd9-935c-704a09bcdf52"
+  },
+  "rabeprazole": {
+   "set_id": "951caefe-6e18-48ff-9567-beb545b09c25",
+   "effective_date": "2023-11-30",
+   "retrieved": "2026-11-09",
+   "title": "Rabeprazole Sodium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=951caefe-6e18-48ff-9567-beb545b09c25"
+  },
+  "famotidine": {
+   "set_id": "03503cd5-bd8e-4bff-b90d-1a71c5225b91",
+   "effective_date": "2025-12-26",
+   "retrieved": "2026-11-09",
+   "title": "Famotidine",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03503cd5-bd8e-4bff-b90d-1a71c5225b91"
+  },
+  "cetirizine": {
+   "set_id": "04b08c52-5390-4cdb-a9e7-fca81fffdc73",
+   "effective_date": "2026-08-07",
+   "retrieved": "2026-11-09",
+   "title": "Cetirizine HCl",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04b08c52-5390-4cdb-a9e7-fca81fffdc73"
+  },
+  "levocetirizine": {
+   "set_id": "163dcce7-4535-a596-e063-6394a90a634f",
+   "effective_date": "2026-08-13",
+   "retrieved": "2026-11-09",
+   "title": "levocetirizine dihydrochloride",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=163dcce7-4535-a596-e063-6394a90a634f"
+  },
+  "fexofenadine": {
+   "set_id": "579c7ff9-0c44-1d46-e063-6294a90aef34",
+   "effective_date": "2026-07-27",
+   "retrieved": "2026-11-09",
+   "title": "Fexofenadine",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=579c7ff9-0c44-1d46-e063-6294a90aef34"
+  },
+  "montelukast": {
+   "set_id": "365e1c5c-01b2-bf4e-e063-6394a90a0e43",
+   "effective_date": "2025-05-30",
+   "retrieved": "2026-11-09",
+   "title": "Montelukast",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=365e1c5c-01b2-bf4e-e063-6394a90a0e43"
+  },
+  "salbutamol": {
+   "set_id": "230d66fc-f62c-42a6-adb3-0a0f879c8ad4",
+   "effective_date": "2026-04-14",
+   "retrieved": "2026-11-09",
+   "title": "Albuterol",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=230d66fc-f62c-42a6-adb3-0a0f879c8ad4"
+  },
+  "levothyroxine": {
+   "set_id": "008de8fd-150f-4022-8ccb-c8bfa94875c7",
+   "effective_date": "2026-03-24",
+   "retrieved": "2026-11-09",
+   "title": "Levothyroxine sodium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=008de8fd-150f-4022-8ccb-c8bfa94875c7"
+  },
+  "azithromycin": {
+   "set_id": "003307c5-3f73-4a5d-a704-bfdea3c656e8",
+   "effective_date": "2026-03-16",
+   "retrieved": "2026-11-09",
+   "title": "Azithromycin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=003307c5-3f73-4a5d-a704-bfdea3c656e8"
+  },
+  "clarithromycin": {
+   "set_id": "0be243c6-de02-45dd-8210-cab1bbc8dfa7",
+   "effective_date": "2025-10-15",
+   "retrieved": "2026-11-09",
+   "title": "Clarithromycin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0be243c6-de02-45dd-8210-cab1bbc8dfa7"
+  },
+  "amoxicillin": {
+   "set_id": "00fbd46e-05fd-4f8a-9f59-a7a4d01c8e54",
+   "effective_date": "2023-12-18",
+   "retrieved": "2026-11-09",
+   "title": "Amoxicillin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00fbd46e-05fd-4f8a-9f59-a7a4d01c8e54"
+  },
+  "clavulanate": {
+   "set_id": "00b86913-50c8-443f-8467-f4f499d358af",
+   "effective_date": "2026-07-23",
+   "retrieved": "2026-11-09",
+   "title": "amoxicillin and clavulanate potassium",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00b86913-50c8-443f-8467-f4f499d358af"
+  },
+  "ciprofloxacin": {
+   "set_id": "0c355077-7361-41d0-9e82-eb31beaf5daa",
+   "effective_date": "2025-03-06",
+   "retrieved": "2026-11-09",
+   "title": "ciprofloxacin",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c355077-7361-41d0-9e82-eb31beaf5daa"
+  },
+  "cholecalciferol": {
+   "set_id": "10307e7e-9a84-4aa1-8c5c-4b209cffe4d1",
+   "effective_date": "2026-02-03",
+   "retrieved": "2026-11-09",
+   "title": "FOSAMAX PLUS D",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10307e7e-9a84-4aa1-8c5c-4b209cffe4d1"
+  },
+  "methylcobalamin": {
+   "set_id": "697e0e52-c01b-4b53-9994-f79c46eb6b4f",
+   "effective_date": "2024-03-01",
+   "retrieved": "2026-11-09",
+   "title": "Nascobal",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=697e0e52-c01b-4b53-9994-f79c46eb6b4f"
+  },
+  "calcium_carbonate": {
+   "set_id": "0108b97f-02e9-4f86-9f33-cde4f919affd",
+   "effective_date": "2017-12-22",
+   "retrieved": "2026-11-09",
+   "title": "ANTACID",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0108b97f-02e9-4f86-9f33-cde4f919affd"
+  },
+  "ferrous_ascorbate": {
+   "set_id": "3a749d62-0e20-0c15-e063-6394a90ac1a8",
+   "effective_date": "2025-07-21",
+   "retrieved": "2026-11-09",
+   "title": "FERRUM SULPHURICUM",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3a749d62-0e20-0c15-e063-6394a90ac1a8"
+  },
+  "potassium_chloride": {
+   "set_id": "00615fad-ad3b-46e8-a89d-48290d937ae2",
+   "effective_date": "2025-09-23",
+   "retrieved": "2026-11-09",
+   "title": "Potassium Chloride",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00615fad-ad3b-46e8-a89d-48290d937ae2"
+  },
+  "sildenafil": {
+   "set_id": "0500a861-359f-4e12-beb5-0cac8cd6ae1c",
+   "effective_date": "2023-05-10",
+   "retrieved": "2026-11-09",
+   "title": "Sildenafil Citrate",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0500a861-359f-4e12-beb5-0cac8cd6ae1c"
+  },
+  "tadalafil": {
+   "set_id": "00cbc656-768d-4995-bb6d-a0d4b32a248c",
+   "effective_date": "2024-10-16",
+   "retrieved": "2026-11-09",
+   "title": "tadalafil",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00cbc656-768d-4995-bb6d-a0d4b32a248c"
+  },
+  "allopurinol": {
+   "set_id": "005048dd-844f-468c-bf56-1a09727e3477",
+   "effective_date": "2024-07-08",
+   "retrieved": "2026-11-09",
+   "title": "Allopurinol",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=005048dd-844f-468c-bf56-1a09727e3477"
+  }
+ },
+ "interactions": {
+  "nitrate_pde5": {
+   "found": true,
+   "label": {
+    "set_id": "0500a861-359f-4e12-beb5-0cac8cd6ae1c",
+    "effective_date": "2023-05-10",
+    "retrieved": "2026-11-09",
+    "title": "Sildenafil Citrate",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0500a861-359f-4e12-beb5-0cac8cd6ae1c"
+   },
+   "ingredient": "sildenafil"
+  },
+  "anticoag_antiplatelet": {
+   "found": true,
+   "label": {
+    "set_id": "2cbcc99d-9107-4d39-a1e9-e19305de8b5d",
+    "effective_date": "2026-06-25",
+    "retrieved": "2026-11-09",
+    "title": "Warfarin Sodium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cbcc99d-9107-4d39-a1e9-e19305de8b5d"
+   },
+   "ingredient": "warfarin"
+  },
+  "anticoag_anticoag": {
+   "found": true,
+   "label": {
+    "set_id": "2cbcc99d-9107-4d39-a1e9-e19305de8b5d",
+    "effective_date": "2026-06-25",
+    "retrieved": "2026-11-09",
+    "title": "Warfarin Sodium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cbcc99d-9107-4d39-a1e9-e19305de8b5d"
+   },
+   "ingredient": "warfarin"
+  },
+  "anticoag_nsaid": {
+   "found": true,
+   "label": {
+    "set_id": "2cbcc99d-9107-4d39-a1e9-e19305de8b5d",
+    "effective_date": "2026-06-25",
+    "retrieved": "2026-11-09",
+    "title": "Warfarin Sodium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cbcc99d-9107-4d39-a1e9-e19305de8b5d"
+   },
+   "ingredient": "warfarin"
+  },
+  "dual_antiplatelet": {
+   "found": true,
+   "label": {
+    "set_id": "02f0eaf8-0fc2-425d-8259-cef00156e25d",
+    "effective_date": "2024-10-31",
+    "retrieved": "2026-11-09",
+    "title": "Clopidogrel",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f0eaf8-0fc2-425d-8259-cef00156e25d"
+   },
+   "ingredient": "clopidogrel"
+  },
+  "antiplatelet_nsaid": {
+   "found": true,
+   "label": {
+    "set_id": "00872852-680a-41b3-901b-b991b12a176d",
+    "effective_date": "2025-02-14",
+    "retrieved": "2026-11-09",
+    "title": "Ibuprofen",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00872852-680a-41b3-901b-b991b12a176d"
+   },
+   "ingredient": "ibuprofen"
+  },
+  "nsaid_nsaid": {
+   "found": true,
+   "label": {
+    "set_id": "00872852-680a-41b3-901b-b991b12a176d",
+    "effective_date": "2025-02-14",
+    "retrieved": "2026-11-09",
+    "title": "Ibuprofen",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00872852-680a-41b3-901b-b991b12a176d"
+   },
+   "ingredient": "ibuprofen"
+  },
+  "clopidogrel_omeprazole": {
+   "found": true,
+   "label": {
+    "set_id": "02f0eaf8-0fc2-425d-8259-cef00156e25d",
+    "effective_date": "2024-10-31",
+    "retrieved": "2026-11-09",
+    "title": "Clopidogrel",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f0eaf8-0fc2-425d-8259-cef00156e25d"
+   },
+   "ingredient": "clopidogrel"
+  },
+  "clopidogrel_esomeprazole": {
+   "found": true,
+   "label": {
+    "set_id": "02f0eaf8-0fc2-425d-8259-cef00156e25d",
+    "effective_date": "2024-10-31",
+    "retrieved": "2026-11-09",
+    "title": "Clopidogrel",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f0eaf8-0fc2-425d-8259-cef00156e25d"
+   },
+   "ingredient": "clopidogrel"
+  },
+  "ace_arb": {
+   "found": true,
+   "label": {
+    "set_id": "09d31eee-cd22-4918-a889-3eb4d2969525",
+    "effective_date": "2026-06-05",
+    "retrieved": "2026-11-09",
+    "title": "telmisartan",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=09d31eee-cd22-4918-a889-3eb4d2969525"
+   },
+   "ingredient": "telmisartan"
+  },
+  "raas_potassium": {
+   "found": true,
+   "label": {
+    "set_id": "09d31eee-cd22-4918-a889-3eb4d2969525",
+    "effective_date": "2026-06-05",
+    "retrieved": "2026-11-09",
+    "title": "telmisartan",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=09d31eee-cd22-4918-a889-3eb4d2969525"
+   },
+   "ingredient": "telmisartan"
+  },
+  "raas_nsaid": {
+   "found": true,
+   "label": {
+    "set_id": "09d31eee-cd22-4918-a889-3eb4d2969525",
+    "effective_date": "2026-06-05",
+    "retrieved": "2026-11-09",
+    "title": "telmisartan",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=09d31eee-cd22-4918-a889-3eb4d2969525"
+   },
+   "ingredient": "telmisartan"
+  },
+  "diuretic_nsaid": {
+   "found": true,
+   "label": {
+    "set_id": "01a5f094-b473-4e46-9e61-69d5ec6dd766",
+    "effective_date": "2023-03-01",
+    "retrieved": "2026-11-09",
+    "title": "Furosemide",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01a5f094-b473-4e46-9e61-69d5ec6dd766"
+   },
+   "ingredient": "furosemide"
+  },
+  "beta_nondhp": {
+   "found": true,
+   "label": {
+    "set_id": "00940cc5-d2eb-4841-9138-de97d7b1c674",
+    "effective_date": "2026-07-27",
+    "retrieved": "2026-11-09",
+    "title": "METOPROLOL TARTRATE",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00940cc5-d2eb-4841-9138-de97d7b1c674"
+   },
+   "ingredient": "metoprolol"
+  },
+  "beta_digoxin": {
+   "found": true,
+   "label": {
+    "set_id": "00940cc5-d2eb-4841-9138-de97d7b1c674",
+    "effective_date": "2026-07-27",
+    "retrieved": "2026-11-09",
+    "title": "METOPROLOL TARTRATE",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00940cc5-d2eb-4841-9138-de97d7b1c674"
+   },
+   "ingredient": "metoprolol"
+  },
+  "amiodarone_digoxin": {
+   "found": true,
+   "label": {
+    "set_id": "02f4a736-63ed-4ad4-a1f1-b21a71e928bd",
+    "effective_date": "2024-02-02",
+    "retrieved": "2026-11-09",
+    "title": "Pacerone",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f4a736-63ed-4ad4-a1f1-b21a71e928bd"
+   },
+   "ingredient": "amiodarone"
+  },
+  "amiodarone_warfarin": {
+   "found": true,
+   "label": {
+    "set_id": "02f4a736-63ed-4ad4-a1f1-b21a71e928bd",
+    "effective_date": "2024-02-02",
+    "retrieved": "2026-11-09",
+    "title": "Pacerone",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f4a736-63ed-4ad4-a1f1-b21a71e928bd"
+   },
+   "ingredient": "amiodarone"
+  },
+  "amiodarone_simvastatin": {
+   "found": true,
+   "label": {
+    "set_id": "00896fff-081d-4553-be8c-1999a8a73dda",
+    "effective_date": "2026-02-26",
+    "retrieved": "2026-11-09",
+    "title": "SIMVASTATIN",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00896fff-081d-4553-be8c-1999a8a73dda"
+   },
+   "ingredient": "simvastatin"
+  },
+  "simvastatin_amlodipine": {
+   "found": true,
+   "label": {
+    "set_id": "00896fff-081d-4553-be8c-1999a8a73dda",
+    "effective_date": "2026-02-26",
+    "retrieved": "2026-11-09",
+    "title": "SIMVASTATIN",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00896fff-081d-4553-be8c-1999a8a73dda"
+   },
+   "ingredient": "simvastatin"
+  },
+  "statin_strong_inhibitor_atorva": {
+   "found": true,
+   "label": {
+    "set_id": "00afce9b-48c9-487a-a738-e359c005c707",
+    "effective_date": "2025-08-28",
+    "retrieved": "2026-11-09",
+    "title": "Atorvastatin calcium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00afce9b-48c9-487a-a738-e359c005c707"
+   },
+   "ingredient": "atorvastatin"
+  },
+  "statin_strong_inhibitor_simva": {
+   "found": true,
+   "label": {
+    "set_id": "00896fff-081d-4553-be8c-1999a8a73dda",
+    "effective_date": "2026-02-26",
+    "retrieved": "2026-11-09",
+    "title": "SIMVASTATIN",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00896fff-081d-4553-be8c-1999a8a73dda"
+   },
+   "ingredient": "simvastatin"
+  },
+  "statin_fibrate": {
+   "found": true,
+   "label": {
+    "set_id": "00afce9b-48c9-487a-a738-e359c005c707",
+    "effective_date": "2025-08-28",
+    "retrieved": "2026-11-09",
+    "title": "Atorvastatin calcium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00afce9b-48c9-487a-a738-e359c005c707"
+   },
+   "ingredient": "atorvastatin"
+  },
+  "beta_hypoglycaemia": {
+   "found": true,
+   "label": {
+    "set_id": "00940cc5-d2eb-4841-9138-de97d7b1c674",
+    "effective_date": "2026-07-27",
+    "retrieved": "2026-11-09",
+    "title": "METOPROLOL TARTRATE",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00940cc5-d2eb-4841-9138-de97d7b1c674"
+   },
+   "ingredient": "metoprolol"
+  },
+  "sulfonylurea_fluoroquinolone": {
+   "found": true,
+   "label": {
+    "set_id": "0c355077-7361-41d0-9e82-eb31beaf5daa",
+    "effective_date": "2025-03-06",
+    "retrieved": "2026-11-09",
+    "title": "ciprofloxacin",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c355077-7361-41d0-9e82-eb31beaf5daa"
+   },
+   "ingredient": "ciprofloxacin"
+  },
+  "qt_qt": {
+   "found": true,
+   "label": {
+    "set_id": "02f4a736-63ed-4ad4-a1f1-b21a71e928bd",
+    "effective_date": "2024-02-02",
+    "retrieved": "2026-11-09",
+    "title": "Pacerone",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02f4a736-63ed-4ad4-a1f1-b21a71e928bd"
+   },
+   "ingredient": "amiodarone"
+  },
+  "levothyroxine_binding": {
+   "found": true,
+   "label": {
+    "set_id": "008de8fd-150f-4022-8ccb-c8bfa94875c7",
+    "effective_date": "2026-03-24",
+    "retrieved": "2026-11-09",
+    "title": "Levothyroxine sodium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=008de8fd-150f-4022-8ccb-c8bfa94875c7"
+   },
+   "ingredient": "levothyroxine"
+  },
+  "fluoroquinolone_binding": {
+   "found": true,
+   "label": {
+    "set_id": "0c355077-7361-41d0-9e82-eb31beaf5daa",
+    "effective_date": "2025-03-06",
+    "retrieved": "2026-11-09",
+    "title": "ciprofloxacin",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c355077-7361-41d0-9e82-eb31beaf5daa"
+   },
+   "ingredient": "ciprofloxacin"
+  },
+  "warfarin_macrolide_quinolone": {
+   "found": true,
+   "label": {
+    "set_id": "2cbcc99d-9107-4d39-a1e9-e19305de8b5d",
+    "effective_date": "2026-06-25",
+    "retrieved": "2026-11-09",
+    "title": "Warfarin Sodium",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cbcc99d-9107-4d39-a1e9-e19305de8b5d"
+   },
+   "ingredient": "warfarin"
+  },
+  "sglt2_loop": {
+   "found": true,
+   "label": {
+    "set_id": "1782b947-4a72-4feb-a488-1469d9af82bd",
+    "effective_date": "2023-05-03",
+    "retrieved": "2026-11-09",
+    "title": "JARDIANCE",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1782b947-4a72-4feb-a488-1469d9af82bd"
+   },
+   "ingredient": "empagliflozin"
+  },
+  "allopurinol_ace": {
+   "found": false,
+   "checked": 4
+  }
+ }
+}

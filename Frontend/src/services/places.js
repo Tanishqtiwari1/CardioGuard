@@ -78,6 +78,7 @@ function kindOf(tags) {
   const value = tags.amenity || tags.healthcare;
   if (value === 'hospital') return 'hospital';
   if (value === 'doctors' || value === 'doctor') return 'doctor';
+  if (value === 'pharmacy') return 'pharmacy';
   return 'clinic';
 }
 
@@ -172,16 +173,19 @@ function readCache() {
 }
 
 // Providers within radiusKm of a point. Results are cached for this browser tab only.
-export async function searchProviders(center, radiusKm) {
+export async function searchProviders(center, radiusKm, { pharmacies = false } = {}) {
   const lat = roundCoord(center.lat);
   const lon = roundCoord(center.lon);
   const radius = Math.round(radiusKm * 1000);
-  const cacheKey = `${lat},${lon},${radius}`;
+  const cacheKey = `${lat},${lon},${radius},${pharmacies ? 'pharmacy' : 'care'}`;
   const cache = readCache();
   if (cache[cacheKey]) return cache[cacheKey];
 
   const around = `(around:${radius},${lat},${lon})`;
-  const query = `[out:json][timeout:25];(
+  const query = pharmacies ? `[out:json][timeout:25];(
+    nwr["amenity"="pharmacy"]${around};
+    nwr["healthcare"="pharmacy"]${around};
+  );out center tags 300;` : `[out:json][timeout:25];(
     nwr["healthcare:speciality"~"cardio",i]${around};
     nwr["amenity"="hospital"]${around};
     nwr["healthcare"="hospital"]${around};
@@ -200,6 +204,7 @@ export async function searchProviders(center, radiusKm) {
       return true;
     });
   } catch {
+    if (pharmacies) throw new Error('Pharmacy search unavailable');
     providers = await nominatimProviders({ lat, lon }, radiusKm);
   }
   try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ...cache, [cacheKey]: providers })); } catch { /* quota */ }
@@ -275,6 +280,7 @@ export async function roadRoute(origin, destination) {
 }
 
 export function specialtyLabel(provider) {
+  if (provider.kind === 'pharmacy') return 'Pharmacy';
   if (provider.cardiology === 'listed') return 'Cardiology';
   if (provider.cardiology === 'name') return 'Likely cardiology (from name)';
   if (provider.kind === 'hospital') return 'Hospital · ask about cardiology';

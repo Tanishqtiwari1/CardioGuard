@@ -1,18 +1,21 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, Building2, Clock, ExternalLink, FileText, Globe, HeartPulse, List, LoaderCircle, LocateFixed, Map as MapIcon, MapPin, Navigation, Phone, RefreshCcw, Search, SearchX, ShieldCheck, Stethoscope, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { ArrowLeft, Building2, Clock, ExternalLink, FileText, Globe, HeartPulse, List, LoaderCircle, LocateFixed, Map as MapIcon, MapPin, Navigation, Phone, RefreshCcw, Pill, Search, SearchX, ShieldCheck, Stethoscope, X } from 'lucide-react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import ManualLocation from '../components/specialists/ManualLocation';
 import ProviderMap from '../components/specialists/ProviderMap';
-import { directionsUrl, rankProviders, reverseGeocode, searchProviders, specialtyLabel } from '../services/places';
+import { directionsUrl, geocode, rankProviders, reverseGeocode, searchProviders, specialtyLabel } from '../services/places';
 import { useToast } from '../ui/toast';
 
 const RADII = [5, 10, 25];
 const FILTERS = [['all', 'All'], ['cardio', 'Cardiology'], ['hospital', 'Hospitals'], ['clinic', 'Clinics & doctors']];
-const KIND_ICON = { hospital: Building2, clinic: Stethoscope, doctor: Stethoscope };
+const KIND_ICON = { hospital: Building2, clinic: Stethoscope, doctor: Stethoscope, pharmacy: Pill };
+const NCR_CITIES = ['New Delhi', 'Noida', 'Greater Noida', 'Ghaziabad', 'Gurugram', 'Faridabad'];
 
 export default function Specialists() {
   const toast = useToast();
   const { state } = useLocation();
+  const [searchParams] = useSearchParams();
+  const pharmacies = searchParams.get('type') === 'pharmacy';
   const context = state?.risk ? state : null;
   const [origin, setOrigin] = useState(null);
   const [status, setStatus] = useState('choose');
@@ -33,13 +36,13 @@ export default function Specialists() {
     setDetailId(null);
     setMovedTo(null);
     try {
-      setProviders(await searchProviders(center, km));
+      setProviders(await searchProviders(center, km, { pharmacies }));
       setStatus('ready');
     } catch {
       setStatus('error');
       toast('We couldn’t load nearby specialists right now.', { tone: 'error' });
     }
-  }, [toast]);
+  }, [toast, pharmacies]);
 
   useEffect(() => { if (origin) runSearch(origin, radius); }, [origin, radius, runSearch]);
 
@@ -64,6 +67,7 @@ export default function Specialists() {
 
   const ranked = useMemo(() => (origin ? rankProviders(providers, origin, sort) : []), [providers, origin, sort]);
   const shown = ranked.filter((item) => {
+    if (pharmacies) return `${item.name} ${item.address || ''}`.toLowerCase().includes(query.trim().toLowerCase());
     if (filter === 'cardio' && item.cardiology === 'unknown') return false;
     if (filter === 'hospital' && item.kind !== 'hospital') return false;
     if (filter === 'clinic' && item.kind === 'hospital') return false;
@@ -76,12 +80,12 @@ export default function Specialists() {
   const header = <div className="page-heading specialists-heading">
     <div>
       <span className="eyebrow"><Stethoscope size={13} /> Recommended next step</span>
-      <h1>Find a specialist</h1>
-      <p>{context
+      <h1>{pharmacies ? 'Find a pharmacy' : 'Find a specialist'}</h1>
+      <p>{pharmacies ? 'A pharmacist can help you confirm a medicine, its strength and how it relates to your prescription.' : context
         ? <>Your latest {context.kind === 'home' ? 'home screening' : 'assessment'} estimate is in the <strong>{context.band?.toLowerCase()}</strong> band. Consider discussing it with a <strong>cardiologist</strong>.</>
         : <>Consider discussing your CardioGuard assessment with a qualified healthcare professional, such as a <strong>cardiologist</strong>.</>}</p>
     </div>
-    <Link className="btn btn-ghost" to="/reports"><FileText size={16} /> Share assessment with doctor</Link>
+    {pharmacies ? <Link className="btn btn-ghost" to="/medicines"><Pill size={16} /> Back to my medicines</Link> : <Link className="btn btn-ghost" to="/reports"><FileText size={16} /> Share assessment with doctor</Link>}
   </div>;
 
   if (!origin || status === 'locating' || (status === 'denied' && !origin)) {
@@ -90,8 +94,8 @@ export default function Specialists() {
       <section className="panel location-card">
         <div className={`locate-orb ${status === 'locating' ? 'active' : ''}`} aria-hidden="true"><LocateFixed size={30} /><i /><i /></div>
         {status === 'denied'
-          ? <><h2>We couldn’t access your location.</h2><p className="muted-text">You can enter your location manually to find nearby specialists.</p></>
-          : <><h2>Find specialists near you</h2><p className="muted-text">We use your location only to show nearby healthcare providers.</p></>}
+          ? <><h2>We couldn’t access your location.</h2><p className="muted-text">You can enter your location manually to search nearby.</p></>
+          : <><h2>{pharmacies ? 'Find pharmacies near you' : 'Find specialists near you'}</h2><p className="muted-text">We use your location only to show nearby healthcare providers.</p></>}
         <div className="location-actions">
           {status !== 'denied' && <button type="button" className="btn btn-primary btn-large" onClick={useMyLocation} disabled={status === 'locating'}>
             {status === 'locating' ? <><LoaderCircle size={18} className="spin" /> Finding your location…</> : <><LocateFixed size={18} /> Use my location</>}
@@ -99,6 +103,7 @@ export default function Specialists() {
           <button type="button" className={`btn btn-large ${status === 'denied' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => setManualOpen(true)}><MapPin size={18} /> {status === 'denied' ? 'Enter location' : 'Enter location manually'}</button>
         </div>
         {manualOpen && <ManualLocation onChoose={chooseManual} onClose={() => setManualOpen(false)} />}
+        <NcrCities onChoose={chooseManual} />
         <PrivacyNote />
       </section>
     </div>;
@@ -120,7 +125,7 @@ export default function Specialists() {
     </div>
     {manualOpen && <div className="panel manual-inline"><ManualLocation onChoose={chooseManual} onClose={() => setManualOpen(false)} onUseMine={() => { setManualOpen(false); useMyLocation(); }} /></div>}
     <div className="specialists-filters">
-      <div className="segmented">{FILTERS.map(([key, label]) => <button type="button" key={key} className={filter === key ? 'active' : ''} onClick={() => setFilter(key)}>{label}</button>)}</div>
+      {!pharmacies && <div className="segmented">{FILTERS.map(([key, label]) => <button type="button" key={key} className={filter === key ? 'active' : ''} onClick={() => setFilter(key)}>{label}</button>)}</div>}
       <div className="segmented view-toggle" role="tablist" aria-label="View">
         <button type="button" role="tab" aria-selected={mobileView === 'list'} className={mobileView === 'list' ? 'active' : ''} onClick={() => setMobileView('list')}><List size={15} /> Specialists</button>
         <button type="button" role="tab" aria-selected={mobileView === 'map'} className={mobileView === 'map' ? 'active' : ''} onClick={() => setMobileView('map')}><MapIcon size={15} /> Map</button>
@@ -138,7 +143,7 @@ export default function Specialists() {
           <button type="button" className="btn btn-ghost" onClick={() => setManualOpen(true)}>Change location</button>
         </StateCard>}
         {status === 'ready' && shown.length > 0 && <>
-          <p className="results-summary">{shown.length} places within {radius} km{cardioCount ? ` · ${cardioCount} with cardiology indicated` : ''}</p>
+          <p className="results-summary">{shown.length} places within {radius} km{!pharmacies && cardioCount ? ` · ${cardioCount} with cardiology indicated` : ''}</p>
           <ul className="provider-list">
             {shown.slice(0, 60).map((provider) => <ProviderCard key={provider.id} provider={provider} origin={origin} selected={provider.id === selectedId} onSelect={() => select(provider.id)} />)}
           </ul>
@@ -155,6 +160,19 @@ export default function Specialists() {
       {detail && <ProviderDetail provider={detail} origin={origin} onClose={() => setDetailId(null)} />}
     </div>
   </div>;
+}
+
+function NcrCities({ onChoose }) {
+  const toast = useToast();
+  const pick = async (city) => {
+    try {
+      const [place] = await geocode(`${city}, India`);
+      if (place) onChoose({ ...place, label: city });
+    } catch {
+      toast('Location search is unavailable right now. Please try again.', { tone: 'error' });
+    }
+  };
+  return <div className="ncr-cities" aria-label="Delhi NCR cities">{NCR_CITIES.map((city) => <button type="button" key={city} className="mini-btn" onClick={() => pick(city)}>{city}</button>)}</div>;
 }
 
 function ProviderCard({ provider, origin, selected, onSelect }) {
@@ -195,7 +213,7 @@ function ProviderDetail({ provider, origin, onClose }) {
       <button type="button" className="icon-btn" onClick={onClose} aria-label="Close"><X size={18} /></button>
     </div>
     <h2>{provider.name}</h2>
-    <p className="muted-text">{provider.kind === 'hospital' ? 'Hospital' : provider.kind === 'doctor' ? 'Doctor’s practice' : 'Clinic'} · {formatKm(provider.distanceKm)} away</p>
+    <p className="muted-text">{provider.kind === 'hospital' ? 'Hospital' : provider.kind === 'doctor' ? 'Doctor’s practice' : provider.kind === 'pharmacy' ? 'Pharmacy' : 'Clinic'} · {formatKm(provider.distanceKm)} away</p>
     <div className="detail-map"><ProviderMap providers={[provider]} origin={origin} selectedId={provider.id} onSelect={() => {}} compact /></div>
     <dl className="detail-facts">
       <Fact icon={MapPin} label="Address" value={provider.address || 'Not listed. Use directions to find it.'} />
@@ -204,7 +222,7 @@ function ProviderDetail({ provider, origin, onClose }) {
       {provider.openingHours && <Fact icon={Clock} label="Opening hours" value={provider.openingHours} />}
       {provider.emergency && <Fact icon={ShieldCheck} label="Emergency" value="Emergency department listed" />}
     </dl>
-    {provider.cardiology === 'unknown' && <p className="detail-note">Cardiology services aren’t listed for this place. Call ahead to check before visiting.</p>}
+    {provider.cardiology === 'unknown' && provider.kind !== 'pharmacy' && <p className="detail-note">Cardiology services aren’t listed for this place. Call ahead to check before visiting.</p>}
     <div className="detail-actions">
       <a className="btn btn-primary" href={directionsUrl(provider, origin)} target="_blank" rel="noreferrer"><Navigation size={16} /> Get directions</a>
       {phone ? <a className="btn btn-ghost" href={`tel:${phone.replace(/\s/g, '')}`}><Phone size={16} /> Call</a> : <span className="btn btn-ghost" aria-disabled="true">No phone listed</span>}
