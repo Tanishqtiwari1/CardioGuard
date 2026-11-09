@@ -19,3 +19,5 @@ services:
         sync: false
       - key: RESEND_FROM_EMAIL
         sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false

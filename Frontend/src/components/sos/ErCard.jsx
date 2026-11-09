@@ -36,7 +36,7 @@ export function ErQr({ url, alt, enlargeLabel, closeLabel }) {
 // The clinical facts. Labels stay in English because hospital staff read them.
 export default function ErCard({ card }) {
   const now = useNow();
-  const { name, age, sex, medicines, allergies, conditions, symptomAt, results } = card;
+  const { name, age, sex, medicines, allergies, conditions, symptomAt, results, vitals, contact } = card;
   const person = [age && `${age} years`, sex].filter(Boolean).join(', ');
   return <div className="er-facts">
     <div className="er-person"><strong>{name || 'Name not provided'}</strong>{person && <span>{person}</span>}</div>
@@ -44,6 +44,8 @@ export default function ErCard({ card }) {
     <Fact label="Allergies" value={allergies} alert />
     <Fact label="Current medicines" value={medicines} />
     <Fact label="Medical conditions" value={conditions} />
+    {vitals && <Fact label="Recent results (reported)" value={vitals} />}
+    {contact && <Fact label="Emergency contact" value={contact} />}
     {results?.c && <Fact label="CardioGuard clinical estimate" value={`${results.c.p}% (${results.c.b} band) · ${new Date(results.c.d).toLocaleDateString()}`} />}
     {results?.h && <Fact label="CardioGuard 10-year home screening" value={`${results.h.p}% (${results.h.b} band) · ${new Date(results.h.d).toLocaleDateString()}`} />}
     <p className="er-disclaimer">Entered by the patient and not verified. CardioGuard estimates are educational and are not a diagnosis.</p>

@@ -65,7 +65,7 @@ const fromBase64Url = (text) => {
   return new TextDecoder().decode(Uint8Array.from(binary, (char) => char.charCodeAt(0)));
 };
 
-export function encodeCard(profile, results, symptomAt) {
+export function encodeCard(profile, results, symptomAt, extra = {}) {
   const payload = {
     n: profile.name?.trim() || undefined,
     a: profile.age || undefined,
@@ -75,6 +75,8 @@ export function encodeCard(profile, results, symptomAt) {
     c: profile.conditions?.trim() || undefined,
     t: symptomAt || undefined,
     r: results || undefined,
+    v: extra.vitals || undefined,
+    e: extra.contact || undefined,
   };
   return toBase64Url(JSON.stringify(payload));
 }
@@ -83,7 +85,7 @@ export function decodeCard(data) {
   try {
     const value = JSON.parse(fromBase64Url(data));
     if (!value || typeof value !== 'object') return null;
-    return { name: value.n, age: value.a, sex: value.s, medicines: value.m, allergies: value.l, conditions: value.c, symptomAt: value.t, results: value.r };
+    return { name: value.n, age: value.a, sex: value.s, medicines: value.m, allergies: value.l, conditions: value.c, symptomAt: value.t, results: value.r, ...(value.v && { vitals: value.v }), ...(value.e && { contact: value.e }) };
   } catch {
     return null;
   }

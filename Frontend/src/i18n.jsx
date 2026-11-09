@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { medicineStrings } from './medicines.strings';
 
 const LANG_KEY = 'cardioguard_lang';
 
@@ -471,6 +472,9 @@ const strings = {
     'community.offlineDetail': 'पूरा इतिहास देखने के लिए इंटरनेट से जुड़ें।',
   },
 };
+
+Object.assign(strings.en, medicineStrings.en);
+Object.assign(strings.hi, medicineStrings.hi);
 
 const LanguageContext = createContext(null);
 

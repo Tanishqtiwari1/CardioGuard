@@ -1,11 +1,12 @@
 import { NavLink, Link } from 'react-router-dom';
-import { Activity, BarChart3, ClipboardList, FileText, History, HousePlus, Lightbulb, LineChart, PanelLeftClose, PhoneCall, Siren, Stethoscope, Users, X } from 'lucide-react';
+import { Activity, BarChart3, ClipboardList, FileText, History, HousePlus, Lightbulb, LineChart, PanelLeftClose, PhoneCall, Pill, Siren, Stethoscope, Users, X } from 'lucide-react';
 import { useT } from '../../i18n';
 
 const links = [
   { to: '/dashboard', label: 'Overview', icon: BarChart3 },
   { to: '/home-screening', labelKey: 'nav.homeScreening', icon: HousePlus },
   { to: '/assessment', label: 'Clinical assessment', icon: ClipboardList },
+  { to: '/medicines', labelKey: 'nav.medicines', icon: Pill },
   { to: '/community', labelKey: 'nav.community', icon: Users },
   { to: '/specialists', labelKey: 'nav.specialists', icon: Stethoscope },
   { to: '/simulator', label: 'What-if lab', icon: Activity },

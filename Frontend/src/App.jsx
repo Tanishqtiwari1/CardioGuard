@@ -26,6 +26,7 @@ const loadSos = () => import('./pages/Sos');
 const Sos = lazy(loadSos);
 const SosTrack = lazy(() => import('./pages/SosTrack'));
 const ErCardPage = lazy(() => import('./pages/ErCardPage'));
+const Medicines = lazy(() => import('./pages/medicines'));
 const pageFallback = <div className="auth-loading"><div className="loading-spinner" /><span>Loading…</span></div>;
 
 // Fetch the SOS page in the background so it is cached for offline use before it is needed.
@@ -56,6 +57,7 @@ function App() {
           <Route path="/home-screening" element={<HomeScreening />} />
           <Route path="/community" element={<Community />} />
           <Route path="/specialists" element={<Suspense fallback={<div className="auth-loading"><div className="loading-spinner" /><span>Loading the map…</span></div>}><Specialists /></Suspense>} />
+          <Route path="/medicines/*" element={<Suspense fallback={pageFallback}><Medicines /></Suspense>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/simulator" element={<Simulator />} />
           <Route path="/history" element={<History />} />

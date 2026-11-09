@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Activity, BarChart3, ClipboardList, CornerDownLeft, FileText, History, HousePlus, Languages, Lightbulb, LineChart, LogOut, Moon, PhoneCall, Search, Settings, Siren, Stethoscope, Sun, UserRound, Users } from 'lucide-react';
+import { Activity, BarChart3, ClipboardList, CornerDownLeft, FileText, History, HousePlus, Languages, Lightbulb, LineChart, LogOut, Moon, PhoneCall, Pill, Search, Settings, Siren, Stethoscope, Sun, UserRound, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useT } from '../i18n';
@@ -19,6 +19,7 @@ export default function CommandPalette({ open, onClose }) {
     { group: 'Go to', label: 'Overview', icon: BarChart3, run: () => navigate('/dashboard'), keywords: 'dashboard home' },
     { group: 'Go to', label: t('nav.homeScreening'), icon: HousePlus, run: () => navigate('/home-screening'), keywords: 'screening risk 10 year framingham' },
     { group: 'Go to', label: 'Clinical assessment', icon: ClipboardList, run: () => navigate('/assessment'), keywords: 'new assessment predict' },
+    { group: 'Go to', label: t('nav.medicines'), icon: Pill, run: () => navigate('/medicines'), keywords: 'tablet prescription scan reminder cabinet dawai' },
     { group: 'Go to', label: t('nav.community'), icon: Users, run: () => navigate('/community'), keywords: 'asha patients village referral' },
     { group: 'Go to', label: t('nav.specialists'), icon: Stethoscope, run: () => navigate('/specialists'), keywords: 'doctor cardiologist hospital clinic near map directions' },
     { group: 'Go to', label: 'What-if lab', icon: Activity, run: () => navigate('/simulator'), keywords: 'simulator scenario' },

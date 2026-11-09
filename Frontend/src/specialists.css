@@ -175,3 +175,4 @@
   .provider-actions { padding-left: 14px; }
   .detail-actions { grid-template-columns: 1fr; }
 }
+.ncr-cities { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-top: 12px; }
