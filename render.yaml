@@ -7,8 +7,9 @@ services:
     startCommand: PYTHONPATH=Backend uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /
     envVars:
+      # Set this to a Postgres URL in the Render dashboard. SQLite here is erased on every deploy.
       - key: DATABASE_URL
-        value: sqlite:///Backend/cardioguard.db
+        sync: false
       - key: CARDIOGUARD_SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
