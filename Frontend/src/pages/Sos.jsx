@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import AmbulanceOptions from '../components/emergency/AmbulanceOptions';
 import { HeartPulse, Hospital, LoaderCircle, LocateFixed, MapPin, MessageCircle, MessageSquare, Navigation, Phone, Plus, RefreshCcw, Siren, Trash2, TriangleAlert, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ErCard, { ErQr, useNow } from '../components/sos/ErCard';
@@ -67,6 +68,7 @@ export default function Sos() {
           <p>{t('sos.text')}</p>
           <a className="sos-button" href="tel:108" onClick={start}><Siren size={38} /><span>{t('sos.button')}</span></a>
           <small>{t('sos.buttonHint')}</small>
+          <AmbulanceOptions />
         </section>}
       <PrepareForm profile={profile} setProfile={setProfile} onDelete={erase} />
     </main>
@@ -181,6 +183,7 @@ function ActiveSos({ session, patch, profile, results, onEnd }) {
       <a className="btn emergency-call" href="tel:108"><Phone size={20} /> {t('sos.call108')}</a>
       <a className="btn emergency-call secondary" href="tel:112"><Phone size={20} /> {t('sos.call112')}</a>
     </section>
+    <AmbulanceOptions compact />
     <fieldset className="sos-onset">
       <legend>{t('sos.startedWhen')}</legend>
       {STARTED_OPTIONS.map((minutes) => <button type="button" key={minutes} className={minutesAgo === minutes ? 'active' : ''} aria-pressed={minutesAgo === minutes} onClick={() => patch({ symptomAt: session.sosAt - minutes * 60000 })}>{minutes ? t('sos.ago', { n: minutes }) : t('sos.now')}</button>)}

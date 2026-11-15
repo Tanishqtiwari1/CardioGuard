@@ -210,3 +210,22 @@
 .stress-body .choice-grid { flex-wrap: wrap; }
 .review-model { color: var(--muted); font-size: 12px; margin-top: 12px; }
 .model-chip { align-items: center; background: var(--mint); border-radius: 999px; color: var(--teal-dark); display: inline-flex; font-size: 11px; font-weight: 700; gap: 6px; padding: 4px 10px; }
+
+/* Ambulance options (Medulance + government numbers) on emergency screens */
+.ambulance-options { background: var(--paper); border: 2px solid var(--coral); border-radius: 14px; display: flex; flex-direction: column; gap: 10px; margin-top: 18px; padding: 18px; text-align: left; }
+.ambulance-options h2 { align-items: center; color: var(--ink); display: flex; font-size: 17px; gap: 8px; margin: 0 0 2px; }
+.ambulance-call, .ambulance-book { align-items: center; border-radius: 12px; display: flex; gap: 12px; min-height: 56px; padding: 12px 16px; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.ambulance-call { background: var(--c-c0392b, #c0392b); color: #fff; box-shadow: 0 6px 18px rgba(192, 57, 43, .25); }
+.ambulance-call:hover, .ambulance-call:focus-visible { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(192, 57, 43, .32); color: #fff; }
+.ambulance-call strong { display: block; font-size: 17px; }
+.ambulance-options .ambulance-call small { color: #fff; display: block; font-size: 14px; font-weight: 600; letter-spacing: .03em; }
+.ambulance-book { background: var(--coral-soft); border: 1px solid var(--coral); color: var(--ink); }
+.ambulance-book:hover, .ambulance-book:focus-visible { border-color: var(--c-c0392b, #c0392b); color: var(--ink); }
+.ambulance-book strong { display: block; font-size: 14px; }
+.ambulance-options .ambulance-book small { color: var(--muted); display: block; font-size: 12px; line-height: 1.35; }
+.ambulance-call:focus-visible, .ambulance-book:focus-visible, .ambulance-fallback a:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.ambulance-options .ambulance-say { background: var(--mint); border-radius: 9px; color: var(--teal-dark); font-size: 13px; line-height: 1.45; margin: 2px 0 0; padding: 9px 12px; }
+.ambulance-options .ambulance-fallback { color: var(--ink); font-size: 13px; line-height: 1.55; margin: 2px 0 0; }
+.ambulance-fallback a { color: var(--c-c0392b, #c0392b); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+.ambulance-options .ambulance-note { color: var(--muted); font-size: 11px; }
+.ambulance-options.compact { margin-top: 12px; }
