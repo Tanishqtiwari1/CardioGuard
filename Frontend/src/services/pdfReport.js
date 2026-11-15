@@ -124,6 +124,7 @@ export async function downloadDoctorReport({ userName, assessment, assessmentFac
     w.heading(`Clinical assessment  (${date(assessment.created_at)})`);
     w.risk('Estimated chance of significant coronary artery disease (UCI clinical model)', assessment.risk_probability, assessment.risk_category);
     w.rows([
+      ...(assessment.patient_name ? [['Patient name', assessment.patient_name]] : []),
       ['Age', `${f.age} years`], ['Sex', f.sex ? 'Male' : 'Female'],
       ['Chest pain type', CHEST_PAIN[f.cp] || 'Not recorded'], ['Resting BP', `${f.trestbps} mmHg`],
       ['Cholesterol', `${f.chol} mg/dL`], ['Fasting sugar > 120', yesNo(f.fbs)],

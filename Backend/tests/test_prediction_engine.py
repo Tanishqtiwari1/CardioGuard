@@ -132,3 +132,15 @@ def test_model_insights_include_extended_metrics(client, auth):
     ext = body['extended_model']
     assert ext['features'][-3:] == ['slope', 'ca', 'thal']
     assert 'standard_model' in ext['comparison']['test_rows_with_extra_inputs']
+
+
+def test_patient_name_is_stored_cleaned_and_ignored_by_the_model(client, auth):
+    plain = client.post('/api/v1/predict?persist=false', json=HIGH, headers=auth).json()
+    named = client.post('/api/v1/predict', json={**HIGH, 'patient_name': '  Vikram   Singh '}, headers=auth).json()
+    assert named['risk_probability'] == plain['risk_probability']
+    records = client.get('/api/v1/history', headers=auth).json()
+    assert any(r['patient_name'] == 'Vikram Singh' for r in records)
+    blank = client.post('/api/v1/predict?persist=false', json={**HIGH, 'patient_name': '   '}, headers=auth)
+    assert blank.status_code == 200
+    too_long = client.post('/api/v1/predict?persist=false', json={**HIGH, 'patient_name': 'x' * 121}, headers=auth)
+    assert too_long.status_code == 422

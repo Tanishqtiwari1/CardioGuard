@@ -2,6 +2,11 @@
 // so they don't slow down the rest of the app. Everything runs in the browser:
 // the report is never uploaded to a server.
 
+// Static `?url` import: in Vite dev, a dynamic import('…?url') of this file returned the worker
+// module itself instead of its URL, so pdf.js rejected it and every PDF failed to read.
+// This module is itself loaded lazily (only when a file is chosen), so nothing loads early.
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
 async function ocrImage(image) {
   const { createWorker } = await import('tesseract.js');
   const worker = await createWorker('eng');
@@ -15,8 +20,7 @@ async function ocrImage(image) {
 
 async function readPdf(file) {
   const pdfjs = await import('pdfjs-dist');
-  const { default: workerUrl } = await import('pdfjs-dist/build/pdf.worker.min.mjs?url');
-  pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
+  pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
   const pdf = await pdfjs.getDocument({ data: await file.arrayBuffer() }).promise;
   const pages = [];
   for (let number = 1; number <= Math.min(pdf.numPages, 5); number += 1) {

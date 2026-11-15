@@ -82,6 +82,7 @@ def predict_risk(data: HealthDataInput, persist: bool = Query(True), user: User 
             risk_probability=result.probability,
             risk_category=result.category,
             model_id=result.model_id,
+            patient_name=data.patient_name,
         )
         db.add(assessment)
         db.commit()
@@ -130,6 +131,7 @@ def assessment_history(user: User = Depends(get_current_user), db: Session = Dep
                 "thal": record.thal,
             },
             "model_id": record.model_id or "standard",
+            "patient_name": record.patient_name,
             "action_plan": [item.model_dump() for item in build_action_plan({
                 "cp": record.cp,
                 "trestbps": record.trestbps,
