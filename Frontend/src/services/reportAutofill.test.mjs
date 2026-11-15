@@ -90,3 +90,38 @@ test('ignores reference ranges and unlabelled numbers for the new fields', () =>
   assert.equal(found.oldpeak, undefined);
   assert.equal(found.restecg, undefined);
 });
+
+// Layout of a common online-lab "smart report" (synthetic data).
+test('reads a smart-report layout: "Prepared for" on its own line, "Female /45 Yrs"', () => {
+  const found = parseReport(`PERSONAL HEALTH
+SMART REPORT
+Prepared for
+Priya Malhotra
+Basic Info
+Female /45 Yrs
+Sample collection date
+07/04/2026`);
+  assert.equal(found.patient_name, 'Priya Malhotra');
+  assert.equal(found.age, 45);
+  assert.equal(found.sex, 0);
+});
+
+test('reads "Customer Name : Ms.NAME" and "Age/Gender : 45Y 3M 6D /Female"', () => {
+  const found = parseReport(`Customer Name   : Ms.PRIYA MALHOTRA   Collected Via   : CITY LAB
+Age/Gender   : 45Y 3M 6D /Female   Referred By   : Dr.
+Glycosylated Hemoglobin (HbA1c)   5.8   %   4 - 5.6   HPLC (NGSP certified)
+Cholesterol - Total   127   mg/dL
+Glucose - Fasting   95   mg/dL   70-99`);
+  assert.equal(found.patient_name, 'Priya Malhotra');
+  assert.equal(found.age, 45);
+  assert.equal(found.sex, 0);
+  assert.equal(found.hba1c, 5.8); // not the "1" inside "HbA1c"
+  assert.equal(found.cholesterol, 127);
+  assert.equal(found.fasting_glucose, 95);
+});
+
+test('does not read a disclaimer sentence as the patient name', () => {
+  const text = '2. It is presumed that the tests performed are, on the specimen / sample being to the patient named or identified and the verifications of';
+  assert.equal(parsePatientName(lines(text)), undefined);
+  assert.equal(parsePatientName(lines('Name: This report is not valid for medico legal purposes')), undefined);
+});
