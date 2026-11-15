@@ -35,3 +35,10 @@
 .action-plan-item strong { display: block; font-size: 12px; }
 .action-plan-item p, .action-plan-empty { color: var(--muted); font-size: 11px; line-height: 1.45; margin-top: 3px; }
 .action-plan-disclaimer { color: var(--c-8a9b99); font-size: 10px; line-height: 1.5; margin-top: 17px; }
+
+.extended-panel { margin-top: 18px; }
+.extended-table { border-collapse: collapse; font-size: 13px; margin: 12px 0; width: 100%; }
+.extended-table th, .extended-table td { border-bottom: 1px solid var(--line); padding: 9px 10px; text-align: left; }
+.extended-table th { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.extended-table td:not(:first-child), .extended-table th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.table-scroll { overflow-x: auto; }

@@ -18,6 +18,10 @@ class AssessmentHistory(Base):
     thalach = Column(Integer)
     exang = Column(Integer)
     oldpeak = Column(Float)
+    slope = Column(Integer, nullable=True)
+    ca = Column(Integer, nullable=True)
+    thal = Column(Integer, nullable=True)
+    model_id = Column(String(20), nullable=True)
     
     risk_probability = Column(Float)
     risk_category = Column(String(50))

@@ -95,7 +95,7 @@ const CHEST_PAIN = { 1: 'Typical angina', 2: 'Atypical angina', 3: 'Non-anginal 
 const FACTOR_LABELS = {
   age: 'Age', sex: 'Sex', cp: 'Chest pain type', trestbps: 'Resting blood pressure', chol: 'Cholesterol',
   fbs: 'Fasting blood sugar', restecg: 'Resting ECG', thalach: 'Maximum heart rate', exang: 'Exercise angina',
-  oldpeak: 'ST depression', smoker: 'Smoking', cigs_per_day: 'Cigarettes per day', bp_medication: 'BP medicine',
+  oldpeak: 'ST depression', slope: 'ST slope', ca: 'Major vessels (fluoroscopy)', thal: 'Thallium stress test', smoker: 'Smoking', cigs_per_day: 'Cigarettes per day', bp_medication: 'BP medicine',
   prior_stroke: 'Previous stroke', hypertension: 'High blood pressure', diabetes: 'Diabetes',
   systolic_bp: 'Systolic blood pressure', bmi: 'BMI',
 };
@@ -129,6 +129,12 @@ export async function downloadDoctorReport({ userName, assessment, assessmentFac
       ['Cholesterol', `${f.chol} mg/dL`], ['Fasting sugar > 120', yesNo(f.fbs)],
       ['Resting ECG', RESTECG[f.restecg] || f.restecg], ['Max heart rate', `${f.thalach} bpm`],
       ['Exercise angina', yesNo(f.exang)], ['ST depression', f.oldpeak],
+      ...(f.slope != null && f.ca != null && f.thal != null ? [
+        ['ST slope', { 1: 'Upsloping', 2: 'Flat', 3: 'Downsloping' }[f.slope] || f.slope],
+        ['Major vessels (fluoroscopy)', f.ca],
+        ['Thallium stress test', { 3: 'Normal', 6: 'Fixed defect', 7: 'Reversible defect' }[f.thal] || f.thal],
+      ] : []),
+      ['Model used', assessment.model_id === 'extended' ? 'Extended clinical model (13 inputs)' : 'Standard clinical model (10 inputs)'],
     ]);
     if (assessmentFactors?.length) {
       w.paragraph('Factors that raised this estimate the most:', 10, MUTED);

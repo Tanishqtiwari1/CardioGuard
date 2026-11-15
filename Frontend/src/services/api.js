@@ -66,3 +66,20 @@ const sosRequest = { timeout: 20000 };
 export const updateSosShare = async (id, key, data) => (await api.put(`/sos/${id}`, data, { ...sosRequest, headers: { 'X-SOS-Key': key } })).data;
 export const readSosShare = async (id) => (await api.get(`/sos/${id}`, { timeout: 70000 })).data;
 export const endSosShare = async (id, key) => api.delete(`/sos/${id}`, { ...sosRequest, headers: { 'X-SOS-Key': key } });
+
+
+// FastAPI returns `detail` as a string, or as a list of validation objects for 422s.
+// React can't render the objects (the page goes blank), so always turn it into text.
+export function errorMessage(error, fallback) {
+  if (!error?.response) return 'Unable to connect to CardioGuard. Please check your connection and try again.';
+  const detail = error.response.data?.detail;
+  if (typeof detail === 'string') return detail;
+  if (Array.isArray(detail) && detail.length) {
+    const first = detail[0];
+    const field = Array.isArray(first?.loc) ? first.loc[first.loc.length - 1] : null;
+    const msg = String(first?.msg || '').replace(/^Value error, /, '');
+    if (field === 'email') return 'Please enter a valid email address.';
+    return msg ? msg.charAt(0).toUpperCase() + msg.slice(1) : fallback;
+  }
+  return fallback;
+}

@@ -11,7 +11,7 @@ import { defaultHealthData } from '../services/storage';
 
 const FACTOR_LABELS = {
   age: 'Age', sex: 'Sex', cp: 'Chest pain type', trestbps: 'Resting blood pressure', chol: 'Cholesterol',
-  fbs: 'Fasting blood sugar', restecg: 'Resting ECG', thalach: 'Maximum heart rate', exang: 'Exercise angina', oldpeak: 'ST depression',
+  fbs: 'Fasting blood sugar', restecg: 'Resting ECG', thalach: 'Maximum heart rate', exang: 'Exercise angina', oldpeak: 'ST depression', slope: 'ST slope', ca: 'Major vessels (fluoroscopy)', thal: 'Thallium stress test',
 };
 
 export default function Reports() {

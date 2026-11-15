@@ -30,6 +30,7 @@ export default function Dashboard() {
           shap_values: {},
           insights: [],
           action_plan: history[0].action_plan || [],
+          model_id: history[0].model_id || "standard",
         },
         formData: history[0].form_data,
       };
@@ -77,7 +78,7 @@ export default function Dashboard() {
           icon={HeartPulse}
           label="Latest risk estimate"
           value={`${riskDisplay}%`}
-          meta={`${result.risk_category} risk band`}
+          meta={`${result.risk_category} risk band · ${result.model_id === "extended" ? "extended model (13 inputs)" : "standard model (10 inputs)"}`}
           tone={result.risk_category === "HIGH" ? "coral" : "mint"}
         />
         <StatCard
@@ -237,6 +238,9 @@ function Factor({ name, impact }) {
       chol: "Cholesterol",
       thalach: "Maximum heart rate",
       oldpeak: "ST depression",
+      slope: "ST slope",
+      ca: "Major vessels (fluoroscopy)",
+      thal: "Thallium stress test",
       age: "Age",
       sex: "Sex at birth",
       cp: "Chest pain type",

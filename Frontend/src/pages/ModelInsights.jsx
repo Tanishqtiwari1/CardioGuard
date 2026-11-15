@@ -7,7 +7,7 @@ import './model-insights.css';
 const featureLabels = {
   age: 'Age', sex: 'Sex at birth', cp: 'Chest pain type', trestbps: 'Resting blood pressure', chol: 'Cholesterol',
   fbs: 'Fasting sugar', restecg: 'Resting ECG', thalach: 'Maximum heart rate',
-  exang: 'Exercise angina', oldpeak: 'ST depression',
+  exang: 'Exercise angina', oldpeak: 'ST depression', slope: 'ST slope', ca: 'Major vessels (fluoroscopy)', thal: 'Thallium stress test',
   smoker: 'Smoker', cigs_per_day: 'Cigarettes per day', bp_medication: 'BP medicine', prior_stroke: 'Previous stroke',
   hypertension: 'High blood pressure', diabetes: 'Diabetes', systolic_bp: 'Systolic BP', bmi: 'BMI',
 };
@@ -83,6 +83,7 @@ function ClinicalMetrics({ data }) {
       <ConfusionPanel matrix={data.confusion_matrix} title="Confusion matrix" note="Rows are actual labels; columns are predicted labels (threshold 50%)." />
       <section className="panel feature-panel"><div className="panel-heading"><div><span className="eyebrow"><Database size={13} /> Input signals</span><h2>Feature importance</h2></div></div><div className="feature-importance-list">{data.feature_importance.map((item) => <div className="importance-row" key={item.feature}><div><strong>{featureLabels[item.feature] || item.feature}</strong><span>{item.importance.toFixed(3)}</span></div><div className="importance-track"><i style={{ width: `${Math.max((item.importance / maxImportance) * 100, 2)}%` }} /></div></div>)}</div><small className="model-footnote">Importance is taken from the trained XGBoost model.</small></section>
     </div>
+    {data.extended_model && <ExtendedModelPanel ext={data.extended_model} />}
   </>;
 }
 
@@ -158,5 +159,19 @@ function ModelCard({ card }) {
       <div><dt>Training data</dt><dd>{card.data}</dd></div>
       <div><dt>Known limitations</dt><dd><ul>{card.limits.map((item) => <li key={item}>{item}</li>)}</ul></dd></div>
     </dl>
+  </section>;
+}
+
+
+function ExtendedModelPanel({ ext }) {
+  const rows = [['accuracy', 'Accuracy'], ['precision', 'Precision'], ['recall', 'Recall'], ['f1_score', 'F1-score'], ['roc_auc', 'ROC-AUC'], ['false_negatives', 'Missed high-risk'], ['false_positives', 'False alarms']];
+  const cmp = ext.comparison.test_rows_with_extra_inputs;
+  const fmt = (key, v) => (key.startsWith('false_') ? v : `${(v * 100).toFixed(1)}%`);
+  return <section className="panel extended-panel">
+    <div className="panel-heading"><div><span className="eyebrow"><Target size={13} /> Extended model</span><h2>When stress-test results are entered</h2></div></div>
+    <p className="model-footnote">{ext.used_when} Compared on the {cmp.standard_model.count} held-out patients who have all three results (never used for training). {ext.note}</p>
+    <div className="table-scroll"><table className="extended-table"><thead><tr><th>Metric</th><th>Standard (10 inputs)</th><th>Extended (13 inputs)</th></tr></thead>
+      <tbody>{rows.map(([key, label]) => <tr key={key}><td>{label}</td><td>{fmt(key, cmp.standard_model[key])}</td><td><strong>{fmt(key, cmp.extended_model[key])}</strong></td></tr>)}</tbody></table></div>
+    <small className="model-footnote">Cross-validated ROC-AUC on training patients with these results: {ext.cv_roc_auc_complete_rows.toFixed(3)} ± {ext.cv_roc_auc_std.toFixed(3)}. Left blank, the extended model was less accurate than the standard one, so blank results always use the standard model.</small>
   </section>;
 }
