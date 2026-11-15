@@ -1,0 +1,160 @@
+{
+  "model": "XGBoost (scaler + model in one sklearn Pipeline)",
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "used_when": "All three of slope, ca and thal are provided; otherwise the standard 10-input model is used.",
+  "dataset": "UCI Heart Disease database: 918 unique patients (Cleveland, Hungary, Switzerland, VA Long Beach)",
+  "evaluation_method": "Same stratified 20% held-out split as train_model.py (random_state=42); never used for training, tuning or model selection.",
+  "training_set": "all_rows",
+  "best_params": {
+    "learning_rate": 0.02,
+    "max_depth": 2,
+    "min_child_weight": 3,
+    "n_estimators": 400
+  },
+  "cv_roc_auc_complete_rows": 0.9093,
+  "cv_roc_auc_std": 0.0348,
+  "candidates_cv_roc_auc": {
+    "all_rows": 0.9093,
+    "complete_rows": 0.9049
+  },
+  "comparison": {
+    "test_rows_with_extra_inputs": {
+      "standard_model": {
+        "count": 53,
+        "accuracy": 0.8302,
+        "precision": 0.8333,
+        "recall": 0.8,
+        "f1_score": 0.8163,
+        "roc_auc": 0.9214,
+        "brier_score": 0.1151,
+        "false_negatives": 5,
+        "false_positives": 4,
+        "confusion_matrix": [
+          [
+            24,
+            4
+          ],
+          [
+            5,
+            20
+          ]
+        ]
+      },
+      "extended_model": {
+        "count": 53,
+        "accuracy": 0.9057,
+        "precision": 0.8846,
+        "recall": 0.92,
+        "f1_score": 0.902,
+        "roc_auc": 0.9557,
+        "brier_score": 0.0889,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "confusion_matrix": [
+          [
+            25,
+            3
+          ],
+          [
+            2,
+            23
+          ]
+        ]
+      }
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "exang",
+      "importance": 0.212131
+    },
+    {
+      "feature": "cp",
+      "importance": 0.209743
+    },
+    {
+      "feature": "slope",
+      "importance": 0.082445
+    },
+    {
+      "feature": "sex",
+      "importance": 0.069762
+    },
+    {
+      "feature": "thal",
+      "importance": 0.059836
+    },
+    {
+      "feature": "thalach",
+      "importance": 0.058769
+    },
+    {
+      "feature": "ca",
+      "importance": 0.058214
+    },
+    {
+      "feature": "oldpeak",
+      "importance": 0.05641
+    },
+    {
+      "feature": "age",
+      "importance": 0.05376
+    },
+    {
+      "feature": "chol",
+      "importance": 0.043464
+    },
+    {
+      "feature": "fbs",
+      "importance": 0.038248
+    },
+    {
+      "feature": "restecg",
+      "importance": 0.035948
+    },
+    {
+      "feature": "trestbps",
+      "importance": 0.02127
+    }
+  ],
+  "calibration": {
+    "brier_score": 0.0889,
+    "bins": [
+      {
+        "predicted": 0.0587,
+        "observed": 0.0
+      },
+      {
+        "predicted": 0.1859,
+        "observed": 0.2
+      },
+      {
+        "predicted": 0.4868,
+        "observed": 0.2727
+      },
+      {
+        "predicted": 0.8002,
+        "observed": 0.9
+      },
+      {
+        "predicted": 0.9599,
+        "observed": 1.0
+      }
+    ]
+  },
+  "note": "Small evaluation set (patients with all three test results, mostly Cleveland). Differences of a few patients; treat as indicative, not definitive."
+}

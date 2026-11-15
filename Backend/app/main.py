@@ -47,10 +47,12 @@ app.include_router(auth_router, prefix="/api/v1/auth")
 
 Base.metadata.create_all(bind=engine)
 
-# create_all doesn't add columns to existing tables; add chest pain type to older databases.
-if 'cp' not in {column['name'] for column in inspect(engine).get_columns('assessments')}:
-    with engine.begin() as connection:
-        connection.execute(text('ALTER TABLE assessments ADD COLUMN cp INTEGER'))
+# create_all doesn't add columns to existing tables; add columns introduced after launch.
+_assessment_columns = {column['name'] for column in inspect(engine).get_columns('assessments')}
+for _name, _kind in {'cp': 'INTEGER', 'slope': 'INTEGER', 'ca': 'INTEGER', 'thal': 'INTEGER', 'model_id': 'VARCHAR(20)'}.items():
+    if _name not in _assessment_columns:
+        with engine.begin() as connection:
+            connection.execute(text(f'ALTER TABLE assessments ADD COLUMN {_name} {_kind}'))
 
 @app.get("/")
 def health_check():

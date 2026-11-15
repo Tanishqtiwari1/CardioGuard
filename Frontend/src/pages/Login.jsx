@@ -1,3 +1,4 @@
+import { errorMessage } from '../services/api';
 import { ArrowRight, HeartPulse, LockKeyhole, ShieldCheck } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -5,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
   const { login } = useAuth(); const navigate = useNavigate(); const location = useLocation(); const [form, setForm] = useState({ email: '', password: '' }); const [error, setError] = useState(''); const [loading, setLoading] = useState(false);
-  const submit = async (event) => { event.preventDefault(); setError(''); setLoading(true); try { await login(form); navigate(location.state?.from || '/dashboard', { replace: true }); } catch (requestError) { setError(requestError.response?.data?.detail || 'Unable to sign in right now.'); } finally { setLoading(false); } };
+  const submit = async (event) => { event.preventDefault(); setError(''); setLoading(true); try { await login(form); navigate(location.state?.from || '/dashboard', { replace: true }); } catch (requestError) { setError(errorMessage(requestError, 'Unable to sign in right now.')); } finally { setLoading(false); } };
   return <AuthLayout title="Welcome back" subtitle="Sign in to continue your private health journey."><form className="auth-form" onSubmit={submit}><Field label="Email address" type="email" value={form.email} onChange={(value) => setForm({ ...form, email: value })} placeholder="you@example.com" /><div><Field label="Password" type="password" value={form.password} onChange={(value) => setForm({ ...form, password: value })} placeholder="Enter your password" /><Link className="auth-forgot" to="/forgot-password">Forgot password?</Link></div>{error && <div className="form-error">{error}</div>}<button className="btn btn-primary auth-submit" disabled={loading}>{loading ? 'Signing in...' : 'Sign in'} <ArrowRight size={17} /></button><p className="auth-switch">New to CardioGuard? <Link to="/signup">Create an account</Link></p></form></AuthLayout>;
 }
 

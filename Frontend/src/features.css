@@ -195,3 +195,18 @@
 @media print {
   .lang-toggle, .drawer-backdrop { display: none !important; }
 }
+
+/* Optional stress-test results (assessment step 3) */
+.stress-tests { border: 1px dashed var(--line); border-radius: 10px; padding: 0; gap: 0; }
+.stress-toggle { align-items: flex-start; background: none; border: 0; color: var(--ink); cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; text-align: left; width: 100%; }
+.stress-toggle strong { font-size: 13px; }
+.stress-toggle em { background: var(--mint); border-radius: 999px; color: var(--teal-dark); font-size: 10px; font-style: normal; font-weight: 700; margin-left: 6px; padding: 2px 8px; }
+.stress-toggle small { color: var(--muted); font-size: 11px; }
+.stress-body { border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; padding: 16px; }
+.stress-body .form-grid { min-height: 0; grid-template-columns: 1fr; }
+.stress-body .choice { min-width: 0; white-space: nowrap; }
+.stress-note { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0; }
+.stress-clear { align-self: flex-start; }
+.stress-body .choice-grid { flex-wrap: wrap; }
+.review-model { color: var(--muted); font-size: 12px; margin-top: 12px; }
+.model-chip { align-items: center; background: var(--mint); border-radius: 999px; color: var(--teal-dark); display: inline-flex; font-size: 11px; font-weight: 700; gap: 6px; padding: 4px 10px; }
