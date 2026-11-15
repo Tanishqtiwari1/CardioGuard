@@ -70,3 +70,20 @@ test('first visit with a slow network: waits for the network rather than failing
   const { response } = await sw.navigate();
   assert.equal(response.body, 'fresh');
 });
+
+test('the retire worker at /Frontend/dist/ unregisters itself and reloads open pages', async () => {
+  const source = readFileSync(new URL('../../public/Frontend/dist/sw.js', import.meta.url), 'utf8');
+  const listeners = {}; const calls = [];
+  const self = {
+    addEventListener: (type, fn) => { listeners[type] = fn; },
+    skipWaiting: () => calls.push('skipWaiting'),
+    registration: { unregister: async () => { calls.push('unregister'); return true; } },
+    clients: { matchAll: async () => [{ url: 'https://example.test/CardioGuard/Frontend/dist/#/sos', navigate: (u) => calls.push(`navigate ${u}`) }] },
+  };
+  vm.runInContext(source, vm.createContext({ self, Promise, console }));
+  listeners.install({});
+  let done; listeners.activate({ waitUntil: (p) => { done = p; } });
+  await done;
+  assert.deepEqual(calls, ['skipWaiting', 'unregister', 'navigate https://example.test/CardioGuard/Frontend/dist/#/sos']);
+  assert.ok(!/caches\.delete/.test(source), 'must not delete caches shared with the current worker');
+});

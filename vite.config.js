@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Relative asset paths in production builds, so the same build works whether GitHub Pages
-// serves the Actions artifact (site root = Frontend/dist) or the repository branch
-// (root index.html redirects to Frontend/dist/).
+// Relative asset paths in production builds. GitHub Pages serves the Actions artifact
+// (site root = Frontend/dist, built by .github/workflows/deploy-pages.yml); old links ending
+// in /Frontend/dist/ are redirected by Frontend/public/Frontend/dist/index.html.
 export default defineConfig(({ command }) => ({
   root: 'Frontend',
   base: command === 'build' ? './' : '/',
