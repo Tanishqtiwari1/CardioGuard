@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 venv/
 .env
+
+# Built by the Pages workflow on every push to main; never committed.
+Frontend/dist/
