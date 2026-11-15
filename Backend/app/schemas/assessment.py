@@ -22,6 +22,15 @@ class HealthDataInput(BaseModel):
     slope: Optional[int] = Field(None, ge=1, le=3, description="Peak-exercise ST slope (1 upsloping, 2 flat, 3 downsloping)")
     ca: Optional[int] = Field(None, ge=0, le=3, description="Major vessels coloured by fluoroscopy (0-3)")
     thal: Optional[int] = Field(None, description="Thallium stress test (3 normal, 6 fixed defect, 7 reversible defect)")
+    patient_name: Optional[str] = Field(None, max_length=120, description="Optional name shown on reports; not used by the model")
+
+    @field_validator('patient_name')
+    @classmethod
+    def _clean_name(cls, v):
+        if v is None:
+            return None
+        v = ' '.join(v.split())
+        return v or None
 
     @field_validator('thal')
     @classmethod

@@ -22,6 +22,7 @@ class AssessmentHistory(Base):
     ca = Column(Integer, nullable=True)
     thal = Column(Integer, nullable=True)
     model_id = Column(String(20), nullable=True)
+    patient_name = Column(String(120), nullable=True)
     
     risk_probability = Column(Float)
     risk_category = Column(String(50))

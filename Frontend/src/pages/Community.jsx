@@ -169,7 +169,7 @@ function ScreeningFlow({ flow, onSave, onClose }) {
     <button type="button" className="btn btn-ghost flow-close" onClick={onClose}><X size={16} /> {t('community.close')}</button>
     {stage === 'emergency' && <EmergencyCheck onClear={() => setStage('form')} />}
     {stage === 'form' && <section className="panel">
-      <ScreeningForm initial={initial} onSubmit={submit}>
+      <ScreeningForm initial={initial} onSubmit={submit} onReport={(found) => { if (found.patient_name) setPerson((current) => ({ ...current, name: found.patient_name })); }}>
         <h3>{t('community.personDetails')}</h3>
         <div className="form-grid">
           <div className="field"><label>{t('community.name')}</label><input value={person.name} onChange={(event) => setPerson({ ...person, name: event.target.value })} required /></div>

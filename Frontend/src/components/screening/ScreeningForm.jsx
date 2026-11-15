@@ -4,7 +4,7 @@ import { useT } from '../../i18n';
 import { bmiFrom, defaultScreening } from '../../services/screeningModel';
 import ReportUpload from './ReportUpload';
 
-export default function ScreeningForm({ initial, onSubmit, submitLabel, children }) {
+export default function ScreeningForm({ initial, onSubmit, submitLabel, children, onReport }) {
   const { t } = useT();
   const [data, setData] = useState({ ...defaultScreening, ...initial });
   const [height, setHeight] = useState('');
@@ -15,6 +15,7 @@ export default function ScreeningForm({ initial, onSubmit, submitLabel, children
   const bmi = bmiUnknown ? null : bmiFrom(height, weight) ?? (initial?.bmi && !height && !weight ? initial.bmi : null);
 
   const applyReport = (found) => {
+    onReport?.(found);
     if (found.systolic_bp) update('systolic_bp', found.systolic_bp);
     if (found.age) update('age', found.age);
     if (found.sex !== undefined) update('sex', found.sex);
@@ -35,7 +36,7 @@ export default function ScreeningForm({ initial, onSubmit, submitLabel, children
 
   return <form className="screening-form" onSubmit={submit}>
     {children}
-    <ReportUpload onApply={applyReport} relevant={['systolic_bp', 'diastolic_bp', 'fasting_glucose', 'hba1c', 'height_cm', 'weight_kg', 'age', 'sex']} />
+    <ReportUpload onApply={applyReport} relevant={[...(onReport ? ['patient_name'] : []), 'systolic_bp', 'diastolic_bp', 'fasting_glucose', 'hba1c', 'height_cm', 'weight_kg', 'age', 'sex']} />
     <div className="form-grid">
       <NumberField label={t('screen.age')} hint={t('common.years')} value={data.age} onChange={(value) => update('age', value)} min={18} max={100} />
       <YesNo label={t('screen.sex')} value={data.sex} options={[[1, t('common.male')], [0, t('common.female')]]} onChange={(value) => update('sex', value)} />

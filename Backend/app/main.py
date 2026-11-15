@@ -49,7 +49,7 @@ Base.metadata.create_all(bind=engine)
 
 # create_all doesn't add columns to existing tables; add columns introduced after launch.
 _assessment_columns = {column['name'] for column in inspect(engine).get_columns('assessments')}
-for _name, _kind in {'cp': 'INTEGER', 'slope': 'INTEGER', 'ca': 'INTEGER', 'thal': 'INTEGER', 'model_id': 'VARCHAR(20)'}.items():
+for _name, _kind in {'cp': 'INTEGER', 'slope': 'INTEGER', 'ca': 'INTEGER', 'thal': 'INTEGER', 'model_id': 'VARCHAR(20)', 'patient_name': 'VARCHAR(120)'}.items():
     if _name not in _assessment_columns:
         with engine.begin() as connection:
             connection.execute(text(f'ALTER TABLE assessments ADD COLUMN {_name} {_kind}'))

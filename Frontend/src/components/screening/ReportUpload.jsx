@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { FileUp, LoaderCircle, ScanText, X } from 'lucide-react';
 import { useT } from '../../i18n';
-import { REPORT_LABELS, parseReport } from '../../services/reportParser';
+import { REPORT_LABELS, displayReportValue, parseReport } from '../../services/reportParser';
 
 // Reads a photo or PDF of a lab report in the browser and offers the values it finds.
 // The parent decides which form fields they fill (onApply receives the parsed values).
@@ -35,7 +35,7 @@ export default function ReportUpload({ onApply, relevant }) {
     {state === 'done' && <div className="upload-result">
       <div className="upload-result-head"><ScanText size={16} /><strong>{t('upload.found')}</strong><button type="button" className="icon-btn" onClick={() => setState('idle')} aria-label="Close"><X size={16} /></button></div>
       {shown.length ? <>
-        <dl>{shown.map(([key, value]) => <div key={key}><dt>{REPORT_LABELS[key][0]}</dt><dd>{key === 'sex' ? (value ? 'Male' : 'Female') : value} <small>{REPORT_LABELS[key][1]}</small></dd></div>)}</dl>
+        <dl>{shown.map(([key, value]) => <div key={key}><dt>{REPORT_LABELS[key][0]}</dt><dd>{displayReportValue(key, value)} <small>{REPORT_LABELS[key][1]}</small></dd></div>)}</dl>
         <small className="muted-text">{t('upload.check')}</small>
         <button type="button" className="btn btn-primary" onClick={() => { onApply(values); setState('idle'); }}>{t('upload.apply')}</button>
       </> : <p className="muted-text">{t('upload.none')}</p>}
