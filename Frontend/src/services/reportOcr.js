@@ -23,7 +23,11 @@ async function readPdf(file) {
   pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
   const pdf = await pdfjs.getDocument({ data: await file.arrayBuffer() }).promise;
   const pages = [];
-  for (let number = 1; number <= Math.min(pdf.numPages, 5); number += 1) {
+  // Lab reports often put the summary first and the detailed results (with the patient's
+  // name/age/sex header) from page 6 on, so read every page that has a text layer (up to 40).
+  // OCR is slow, so scanned pages are OCR'd only for the first 5.
+  let scanned = 0;
+  for (let number = 1; number <= Math.min(pdf.numPages, 40); number += 1) {
     const page = await pdf.getPage(number);
     const content = await page.getTextContent();
     // Rebuild lines from text items using their vertical position.
@@ -33,7 +37,8 @@ async function readPdf(file) {
       rows.set(y, `${rows.get(y) || ''} ${item.str}`);
     });
     let text = [...rows.entries()].sort((a, b) => b[0] - a[0]).map(([, line]) => line.trim()).join('\n');
-    if (text.replace(/\s/g, '').length < 20) {
+    if (text.replace(/\s/g, '').length < 20 && scanned < 5) {
+      scanned += 1;
       // Scanned PDF with no text layer: render the page and OCR it.
       const viewport = page.getViewport({ scale: 2 });
       const canvas = document.createElement('canvas');

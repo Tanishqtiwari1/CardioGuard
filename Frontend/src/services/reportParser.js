@@ -7,7 +7,8 @@ const MGDL_PER_MMOL_CHOLESTEROL = 38.67;
 // The result is the first number after the label. Later numbers on the line are usually the
 // reference range ("70-100"), so they are never used: a missing value is safer than a wrong one.
 function firstNumberAfter(line, labelMatch) {
-  const match = line.slice(labelMatch.index + labelMatch[0].length).match(/([<>≤≥]\s*)?(\d{1,3}(?:\.\d+)?)(\s*[-–]\s*\d)?/);
+  // (?<![A-Za-z\d.]) skips digits inside words, e.g. the "1" in "(HbA1c) 5.8 %".
+  const match = line.slice(labelMatch.index + labelMatch[0].length).match(/([<>≤≥]\s*)?(?<![A-Za-z\d.])(\d{1,3}(?:\.\d+)?)(\s*[-–]\s*\d)?/);
   // "<200" or "70-100" is a reference range, meaning the result itself wasn't read.
   if (!match || match[1] || match[3]) return undefined;
   return Number(match[2]);
@@ -72,10 +73,14 @@ export function parseReport(text) {
   const weight = findValue(lines, /weight/i, { min: 25, max: 250 });
   if (weight) found.weight_kg = weight;
 
-  const ageSex = all.match(/age\s*\/\s*(?:sex|gender)\s*[:\-]?\s*(\d{1,3})\s*(?:y(?:ea)?rs?|y)?\s*\/\s*([mf])/i);
+  const ageSex = all.match(/age\s*\/\s*(?:sex|gender)\s*[:\-]?\s*(\d{1,3})\s*(?:y(?:ea)?rs?|y)?(?:\s*\d{1,2}\s*m(?:onths?)?)?(?:\s*\d{1,2}\s*d(?:ays?)?)?\s*\/\s*([mf])/i);
+  const sexAge = all.match(/\b(male|female|m|f)\s*\/\s*(\d{1,3})\s*(?:y(?:ea)?rs?|y)\b/i);
   if (ageSex) {
     found.age = Number(ageSex[1]);
     found.sex = ageSex[2].toLowerCase() === 'm' ? 1 : 0;
+  } else if (sexAge && Number(sexAge[2]) >= 1 && Number(sexAge[2]) <= 120) {
+    found.age = Number(sexAge[2]);
+    found.sex = sexAge[1].toLowerCase().startsWith('m') ? 1 : 0;
   } else {
     const age = findValue(lines, /\bage\b/i, { exclude: /average|stage|page/i, min: 1, max: 120 });
     if (age) found.age = age;
@@ -96,27 +101,45 @@ export function parseReport(text) {
 }
 
 // ---- Patient name ---------------------------------------------------------------------------
-const NAME_LABEL = /(?:patient(?:'?s)?\s*name|pt\.?\s*name|name\s+of\s+(?:the\s+)?patient|^name)\s*[:\-.]?\s*/i;
+// Labels in order of reliability. "patient name\b" so "the patient named ..." (disclaimers) doesn't match.
+const NAME_LABELS = [
+  /(?:patient(?:'?s)?\s*name\b|pt\.?\s*name\b|name\s+of\s+(?:the\s+)?patient\b)\s*[:\-.]?\s*/i,
+  /(?:customer|client|beneficiary)\s*name\b\s*[:\-.]?\s*/i,
+  /^name\b\s*[:\-.]?\s*/i,
+  /^prepared\s+for\b\s*[:\-.]?\s*/i,
+];
 // Fields that often follow the name on the same printed line.
-const NAME_STOP = /\s+(?:age|sex|gender|uhid|mrn|id|patient\s*id|reg(?:istration)?|ref(?:\.|erred)?|date|dob|d\.o\.b|sample|lab|bill|visit|phone|mobile|contact|ward|bed|ipd|opd|collected|reported)\b.*$/i;
+const NAME_STOP = /\s+(?:age|sex|gender|uhid|mrn|id|patient\s*id|reg(?:istration)?|ref(?:\.|erred)?|date|dob|d\.o\.b|sample|lab|bill|visit|phone|mobile|contact|ward|bed|ipd|opd|collected|reported|barcode|booking|order|sid)\b.*$/i;
 const NOT_A_PATIENT = /referr|ref\.?\s*by|consultant|doctor|physician|dr\.?\s*name|lab(?:oratory)?\s*name|hospital\s*name|centre|center|clinic\s*name|technician|signature/i;
-const TITLES = /^(?:mr|mrs|ms|miss|mx|master|baby|shri|sri|smt|kumari|kum|km)\.?\s+/i;
+const TITLES = /^(?:mr|mrs|ms|miss|mx|master|baby|shri|sri|smt|kumari|kum|km)(?:\.\s*|\s+)/i;
+// A person's name doesn't contain these; sentences picked up by mistake usually do.
+const NOT_NAME_WORDS = /\b(?:and|or|the|of|is|are|be|to|for|with|by|not|this|that|report|test|result|lab|hospital|diagnostic|pathology|clinic|summary|health|checkup|smart|details?|info|gender|age)\b/i;
 
 function titleCase(name) {
   return name.toLowerCase().replace(/(^|[\s'-])([a-z])/g, (_, sep, ch) => sep + ch.toUpperCase());
 }
 
+function cleanName(raw) {
+  let name = raw.replace(NAME_STOP, '').replace(/[|,;:]+.*$/, '').trim();
+  name = name.replace(TITLES, '').replace(/\s*\(.*$/, '').trim();
+  // Letters, spaces, dots, apostrophes and hyphens only; 2-60 characters; at most 5 words.
+  if (!/^[A-Za-z][A-Za-z .'-]{1,59}$/.test(name) || (name.match(/[A-Za-z]/g) || []).length < 2) return undefined;
+  if (name.split(/\s+/).length > 5 || NOT_NAME_WORDS.test(name)) return undefined;
+  return name === name.toUpperCase() || name === name.toLowerCase() ? titleCase(name) : name;
+}
+
 export function parsePatientName(lines) {
-  for (const line of lines) {
-    if (NOT_A_PATIENT.test(line.split(/[:\-]/)[0])) continue;
-    const label = line.match(NAME_LABEL);
-    if (!label) continue;
-    let name = line.slice(label.index + label[0].length).replace(NAME_STOP, '').replace(/[|,;:]+.*$/, '').trim();
-    name = name.replace(TITLES, '').replace(/\s*\(.*$/, '').trim();
-    // Letters, spaces, dots, apostrophes and hyphens only; at least two letters, at most 60 characters.
-    if (!/^[A-Za-z][A-Za-z .'-]{1,59}$/.test(name) || (name.match(/[A-Za-z]/g) || []).length < 2) continue;
-    if (/\b(?:report|test|result|lab|hospital|diagnostic|pathology|clinic)\b/i.test(name)) continue;
-    return name === name.toUpperCase() || name === name.toLowerCase() ? titleCase(name) : name;
+  for (const label of NAME_LABELS) {
+    for (let i = 0; i < lines.length; i += 1) {
+      const line = lines[i];
+      if (NOT_A_PATIENT.test(line.split(/[:\-]/)[0])) continue;
+      const match = line.match(label);
+      if (!match) continue;
+      const rest = line.slice(match.index + match[0].length).trim();
+      // Label on its own line ("Prepared for" / "Priya Malhotra"): the name is on the next line.
+      const name = cleanName(rest || lines[i + 1] || '');
+      if (name) return name;
+    }
   }
   return undefined;
 }
